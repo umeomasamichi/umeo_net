@@ -31,13 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig',#polls‚Æ‚¢‚¤©ì‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“
-    'django.contrib.admin',#ŠÇ—ƒTƒCƒg
-    'django.contrib.auth',#”FØƒVƒXƒeƒ€
-    'django.contrib.contenttypes',#ƒRƒ“ƒeƒ“ƒcƒ^ƒCƒvƒtƒŒ[ƒ€ƒ[ƒN
-    'django.contrib.sessions',#ƒZƒbƒVƒ‡ƒ“ƒtƒŒ[ƒ€ƒ[ƒN
-    'django.contrib.messages',#ƒƒbƒZ[ƒWƒtƒŒ[ƒ€ƒ[ƒN
-    'django.contrib.staticfiles',#Ã“Iƒtƒ@ƒCƒ‹‚ÌŠÇ—ƒtƒŒ[ƒ€ƒ[ƒN
+    'cola.apps.ColaConfig',
+    'polls.apps.PollsConfig',#pollsï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌƒAï¿½vï¿½ï¿½ï¿½Pï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½
+    'django.contrib.admin',#ï¿½Ç—ï¿½ï¿½Tï¿½Cï¿½g
+    'django.contrib.auth',#ï¿½Fï¿½ØƒVï¿½Xï¿½eï¿½ï¿½
+    'django.contrib.contenttypes',#ï¿½Rï¿½ï¿½ï¿½eï¿½ï¿½ï¿½cï¿½^ï¿½Cï¿½vï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½N
+    'django.contrib.sessions',#ï¿½Zï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½N
+    'django.contrib.messages',#ï¿½ï¿½ï¿½bï¿½Zï¿½[ï¿½Wï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½N
+    'django.contrib.staticfiles',#ï¿½Ã“Iï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ÌŠÇ—ï¿½ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½N
 ]
 
 MIDDLEWARE = [
