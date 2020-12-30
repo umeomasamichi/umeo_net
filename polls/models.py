@@ -3,23 +3,24 @@ import datetime
 from django.db import models
 from django.utils import timezone
 
-#‚Q‚Â‚Ìƒ‚ƒfƒ‹‚ÍC‚¢‚¸‚ê‚àdjango.db.models.Model‚ÌƒTƒuƒNƒ‰ƒX
-#‚Ç‚¿‚ç‚à•¡”‚ÌƒNƒ‰ƒX•Ï”‚ğ‚¿CŒÂX‚ÌƒNƒ‰ƒX•Ï”‚Íƒ‚ƒfƒ‹‚Ìƒf[ƒ^ƒx[ƒXƒtƒB[ƒ‹ƒh‚ğ•\Œ»‚µ‚Ä‚¢‚éD
-#ŠeƒtƒB[ƒ‹ƒh‚ÍFieldƒNƒ‰ƒX‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚Æ‚µ‚Ä•\Œ»‚³‚ê‚Ä‚¢‚éD
+#ï¿½Qï¿½Â‚Ìƒï¿½ï¿½fï¿½ï¿½ï¿½ÍCï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½django.db.models.Modelï¿½ÌƒTï¿½uï¿½Nï¿½ï¿½ï¿½X
+#ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌƒNï¿½ï¿½ï¿½Xï¿½Ïï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ÂXï¿½ÌƒNï¿½ï¿½ï¿½Xï¿½Ïï¿½ï¿½Íƒï¿½ï¿½fï¿½ï¿½ï¿½Ìƒfï¿½[ï¿½^ï¿½xï¿½[ï¿½Xï¿½tï¿½Bï¿½[ï¿½ï¿½ï¿½hï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½D
+#ï¿½eï¿½tï¿½Bï¿½[ï¿½ï¿½ï¿½hï¿½ï¿½Fieldï¿½Nï¿½ï¿½ï¿½Xï¿½ÌƒCï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Xï¿½Æ‚ï¿½ï¿½Ä•\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½D
 
-#question_text‚ÆCpub_date‚Æ‚¢‚¤—ñ‚ğ‚à‚ÂCQuestion‚Æ‚¢‚¤ƒ‚ƒfƒ‹
-#‘æ1ˆø”‚ÅC–¼‘O‚ğ•t‚¯‚é‚±‚Æ‚ª‚Å‚«‚éD
-#ˆÈ‰º‚Å‚Ípub_date‚ÉCdate published‚Æ‚¢‚¤–¼‘O‚ğ•t‚¯‚Ä‚¢‚éD
-#CharField‚ÍCmax_length‚Æ‚¢‚¤“ü—Í‚ª•K{‚Ìˆø”‚ª‚ ‚éD
+#question_textï¿½ÆCpub_dateï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÂCQuestionï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½
+#ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ÅCï¿½ï¿½ï¿½Oï¿½ï¿½tï¿½ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½Å‚ï¿½ï¿½ï¿½D
+#ï¿½È‰ï¿½ï¿½Å‚ï¿½pub_dateï¿½ÉCdate publishedï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½tï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½D
+#CharFieldï¿½ÍCmax_lengthï¿½Æ‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Kï¿½{ï¿½Ìˆï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½D
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
     def __str__(self):
         return self.question_text
     def was_published_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+        now = timezone.now()
+        return now >= self.pub_date >= now - datetime.timedelta(days=1)
 
-#ForeignKey‚ÅCQuestion‚Æ‚ÌŠÖŒW‚ğ’è‹`
+#ForeignKeyï¿½ÅCQuestionï¿½Æ‚ÌŠÖŒWï¿½ï¿½ï¿½`
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
