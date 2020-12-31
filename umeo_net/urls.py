@@ -18,6 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('polls/', include('polls.urls')),
+    path('umeo_site/', include('umeo_site.urls')),
     path('cola/', include('cola.urls')),
     path('admin/', admin.site.urls),
 ]

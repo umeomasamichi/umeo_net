@@ -12,11 +12,10 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Cola',
+            name='UmeoP',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('type_name', models.CharField(max_length=200)),
-                ('yammy', models.BooleanField(default=False)),
+                ('point', models.IntegerField(default=0)),
             ],
         ),
     ]
