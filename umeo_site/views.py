@@ -47,3 +47,9 @@ def Bairitsu_Change(request):
         user.bairitsu += 1
         user.save()
     return render(request, 'umeo_site/button.html')
+
+class BaseView(TemplateView):
+    template_name = "umeo_site/base.html"
+
+class ExtendsView(TemplateView):
+    template_name = "umeo_site/extends.html"

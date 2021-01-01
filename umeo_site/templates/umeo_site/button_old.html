@@ -1,0 +1,31 @@
+{% load utils %}
+<!--後々ajaxで，実装したい．-->
+<!DOCTYPE html>
+
+{% bootstrap_css %}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>button</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<p>梅尾好きボタン</p>
+<p>{{ user.username }}さんの梅尾ポイントは{{ user.umeop }}Pです</p>
+<p>{{ user.username }}さんの倍率はx{{ user.bairitsu }}です</p>
+<p>次の倍率に進むためのポイントは{{ user.bairitsu|next_point:10 }}Pです</p>
+<a href="{% url 'umeo_site:index' %}">ホーム</a>
+<form action="{% url 'umeo_site:button' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" name="like" value="1">Like</button>
+</form>
+
+<form action="{%url 'umeo_site:change' %}" method="post">
+    {% csrf_token%}
+    <button type="submit" name="change" value="Change">change</button>
+</form>
+
+</body>
+</html>

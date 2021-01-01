@@ -5,6 +5,7 @@ from django.contrib.auth import (
 )
 from users.models import User
 from django.utils.translation import gettext, gettext_lazy as _
+from django.core.exceptions import ValidationError
 
 User = get_user_model()
 

@@ -1,27 +1,41 @@
+{% extends 'umeo_site/base.html' %}
+
+{% load static %}
+
+{% block title %}梅尾ボタン{% endblock %}
+
+{% block content%}
 {% load utils %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>button</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-<p>梅尾好きボタン</p>
-<p>{{ user.username }}さんの梅尾ポイントは{{ user.umeop }}Pです</p>
-<p>{{ user.username }}さんの倍率はx{{ user.bairitsu }}です</p>
-<p>次の倍率に進むためのポイントは{{ user.bairitsu|next_point:10 }}Pです</p>
-<a href="{% url 'umeo_site:index' %}">ホーム</a>
-<form action="{% url 'umeo_site:button' %}" method="POST">
-    {% csrf_token %}
-    <button type="submit" name="like" value="1">Like</button>
-</form>
+<!-- Masthead-->
+<header class="masthead text-secondary text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading text-uppercase mb-0">梅尾ボタン</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div><!--ここ梅のマークにする-->
+            <div class="divider-custom-line"></div>
+        </div>
+        <!--ボタン-->
+        <p>{{ user.username }}さんの梅尾ポイントは{{ user.umeop }}Pです</p>
+        <p>{{ user.username }}さんの倍率はx{{ user.bairitsu }}です</p>
+        <p>次の倍率に進むためのポイントは{{ user.bairitsu|next_point:10 }}Pです</p>
+        <form action="{% url 'umeo_site:button' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary btn-lg font-weight-bold umeo_button"><i class="fas fa-heart"></i> Like</button>
+            <!--umeo_button反映されない……ピエン．いつか絶対でかいボタンにするんだ．-->
+        </form>
+        <br>
+        <form action="{%url 'umeo_site:change' %}" method="post">
+            {% csrf_token%}
+            <button type="submit" class="btn btn-primary btn-lg font-weight-bold umeo_button"><i class="fas fa-level-up-alt"></i> Rank Up</button>
+        </form>
+    </div>
+</header>
 
-<form action="{%url 'umeo_site:change' %}" method="post">
-    {% csrf_token%}
-    <button type="submit" name="change" value="Change">change</button>
-</form>
 
-</body>
-</html>
+
+
+{% endblock %}

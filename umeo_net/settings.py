@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap4',
     'umeo_site',
     'users.apps.UsersConfig',
     #'umeo_site.apps.UmeoSiteConfig',
@@ -67,6 +68,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+            ],
+            'builtins':[
+                'bootstrap4.templatetags.bootstrap4',
             ],
         },
     },
@@ -129,3 +133,4 @@ LOGIN_REDIRECT_URL = 'umeo_site:index'
 LOGOUT_REDIRECT_URL = 'umeo_site:index'
 
 AUTH_USER_MODEL = 'users.User'
+

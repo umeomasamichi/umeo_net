@@ -9,5 +9,7 @@ urlpatterns = [
     path('index/',views.IndexView.as_view(), name="index"),
     path('create/', views.UserCreateView.as_view(),name="create"),
     path('button/', views.UmeoButtonView,name="button"),
-    path('bairitsu_change/', views.Bairitsu_Change, name="change")
+    path('bairitsu_change/', views.Bairitsu_Change, name="change"),
+    path('base/', views.BaseView.as_view(), name="base"),
+    path('extends/', views.ExtendsView.as_view(), name="extends"),
 ]
