@@ -11,12 +11,16 @@
         <img class="masthead-avatar mb-5" src="{% static 'umeo_site/img/avataaars.svg' %}" alt="" />
         <!-- Masthead Heading-->
         <h1 class="masthead-heading text-uppercase mb-0">梅尾の誕生日<br>おめでとうサイト</h1>
-        <!-- Icon Divider-->
-        <div class="divider-custom divider-light">
-            <div class="divider-custom-line"></div>
-            <div class="divider-custom-icon"><i class="fas fa-star"></i></div><!--ここ梅のマークにする-->
-            <div class="divider-custom-line"></div>
-        </div>
+        {% if user.id %}
+        <p>こんにちは，{{ user.username }}さん</p>
+<a href="{% url 'umeo_site:button'%}">梅尾好きボタンはこちらから</a>
+<a href="{% url 'umeo_site:logout' %}">ログアウト</a>
+{% else %}
+<p>アカウント作成orログインをお願いします．</p>
+<a href="{% url 'umeo_site:login'%}">ログイン</a><br>
+<a href="{% url 'umeo_site:create'%}">アカウント作成</a>
+{% endif %}
+    </div>
         <!-- Masthead Subheading-->
         <h3 class="masthead-subheading font-weight-light mb-0">{{ user.username }}さん ようこそ！<br>あなたの梅尾ポイントは{{ user.umeop }}Pです！</h3>
     </div>
