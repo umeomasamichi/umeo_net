@@ -1,11 +1,12 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView,CreateView,DetailView
+from django.views.generic import TemplateView,CreateView,DetailView,ListView
 #from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy 
 from . import forms
 from django.shortcuts import render, get_object_or_404
 from users.models import User
+from .models import Message
 from django.contrib.auth.decorators import login_required
 
 #hombre-nuevo.com/python/python0048/
@@ -21,6 +22,11 @@ class MyLogoutView(LoginRequiredMixin, LogoutView):
 
 class IndexView(TemplateView):
     template_name = "umeo_site/index.html"
+
+
+class HomeView(TemplateView):
+    template_name = "umeo_site/home.html"
+#ログインしてない時の処理を書かなきゃ（もしかしてこの処理，全部のページでいるのでは？）
 
 class UserCreateView(CreateView):
     form_class = forms.UserCreationForm
@@ -53,3 +59,30 @@ class BaseView(TemplateView):
 
 class ExtendsView(TemplateView):
     template_name = "umeo_site/extends.html"
+
+class MessageIndexView(ListView):
+    model = Message
+    #templateにはmessage_list.htmlが自動的に選ばれる
+
+class CreateMessageView(CreateView):
+    model = Message
+    form_class = forms.MessageForm
+    success_url = reverse_lazy('umeo_site:message')
+
+    def form_valid(self, form):
+        form.instance.writer = self.request.user
+        self.request.user.umeop += 1000
+        self.request.user.save()
+        return super(CreateMessageView, self).form_valid(form)
+
+class RankView(ListView):
+    #https://www.nblog09.com/w/2019/05/06/django-listview/
+    #DjangoのListViewで順番を入れ替えたり絞込をする
+    model = User
+    template_name = "umeo_site/rank.html"
+    
+    def get_queryset(self):
+        return User.objects.order_by('-umeop')
+
+def StockView(request):
+    return render(request, 'umeo_site/stock.html')

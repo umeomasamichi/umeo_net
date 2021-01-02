@@ -10242,5 +10242,35 @@ form .row:first-child .floating-label-form-group {
 /*ここから自作*/
 
 .umeo_button{
-  padding: 10rem 10rem !important;
+  padding: 8rem 8rem !important;
+}
+
+
+.message {
+  padding-top: calc(6rem + 10px);
+  padding-bottom: 3rem;
+}
+.message .message-heading {
+  font-size: 2.75rem;
+  line-height: 2.75rem;
+}
+.message .message-subheading {
+  font-size: 1.25rem;
+}
+.message .message-avatar {
+  width: 15rem;
+}
+
+@media (min-width: 992px) {
+  .message {
+    padding-top: calc(6rem + 50px);
+    padding-bottom: 3rem;
+  }
+  .message .message-heading {
+    font-size: 4rem;
+    line-height: 3.5rem;
+  }
+  .message .message-subheading {
+    font-size: 1.5rem;
+  }
 }

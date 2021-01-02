@@ -11,5 +11,9 @@ urlpatterns = [
     path('button/', views.UmeoButtonView,name="button"),
     path('bairitsu_change/', views.Bairitsu_Change, name="change"),
     path('base/', views.BaseView.as_view(), name="base"),
-    path('extends/', views.ExtendsView.as_view(), name="extends"),
+    path('home/', views.HomeView.as_view(), name="home"),
+    path('message/', views.MessageIndexView.as_view(), name="message"),
+    path('message_form/', views.CreateMessageView.as_view(), name="message_form"),
+    path('rank/', views.RankView.as_view(), name="rank"),
+    path('stock/', views.StockView, name="stock"),
 ]

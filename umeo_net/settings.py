@@ -129,7 +129,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_URL = 'umeo_site:login'
-LOGIN_REDIRECT_URL = 'umeo_site:index'
+LOGIN_REDIRECT_URL = 'umeo_site:home'
 LOGOUT_REDIRECT_URL = 'umeo_site:index'
 
 AUTH_USER_MODEL = 'users.User'

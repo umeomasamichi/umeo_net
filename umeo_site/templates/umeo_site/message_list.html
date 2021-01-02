@@ -1,0 +1,41 @@
+{% extends 'umeo_site/base.html' %}
+
+{% load static %}
+
+
+
+{% block title %}Umeo-Net_おめでとうメッセージ{% endblock %}
+
+{% block content%}
+
+<div class="message text-secondary">
+    <div class="d-flex flex-column ml-3 mr-3">
+        <!-- Masthead Heading-->
+        <h1 class="message-heading text-uppercase mb-5 text-center">お祝いメッセージ</h1>
+        <!--message-->
+        {% for message in object_list %}
+        <div class="card mb-3">
+            <div class="card-header">
+                {{message.writer}}より
+            </div>
+            <div class="card-body">
+                <!--<h5 class="card-title">{{comment.title}}</h5>-->
+                <!--改行させて表示させる方法
+                https://www.tssol.net/blog/2019/10/20/django-input-textarea-line-breaks-on-html/
+                -->
+                <p class="card-text">{{message.body | linebreaksbr}}</p>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    <hr>
+    <div class="ml-3">
+        <form action="{% url 'umeo_site:message_form' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-secondary btn-lg font-weight-bold">新規コメントの投稿</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

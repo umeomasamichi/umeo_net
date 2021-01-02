@@ -1,0 +1,12 @@
+{% extends 'umeo_site/base.html' %}
+ 
+  {% block content %}
+  <div class="message text-secondary ml-3 mr-3">
+    <h1 class="mb-4">投稿フォーム</h1>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">コメントを投稿する</button>
+    </form>
+  </div>
+  {% endblock content %}

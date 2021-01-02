@@ -4,8 +4,12 @@ from django.contrib.auth import (
     authenticate, get_user_model, password_validation,
 )
 from users.models import User
+from .models import Message
 from django.utils.translation import gettext, gettext_lazy as _
 from django.core.exceptions import ValidationError
+
+#https://blog.mtb-production.info/entry/2018/12/20/201057
+#formsの役割
 
 User = get_user_model()
 
@@ -74,3 +78,17 @@ class UserCreationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+class MessageForm(forms.ModelForm):
+
+    class Meta:
+        model = Message
+        fields = ('body', )
+        widgets = {
+              'body': forms.Textarea(attrs={
+              'class': 'form-control'
+            }),
+        }
+        labels = {
+            'body': 'メッセージ',
+        }
