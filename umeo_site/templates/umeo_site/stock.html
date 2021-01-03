@@ -6,6 +6,32 @@
 
 {% block content%}
 
-
+<header class="masthead text-secondary text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading text-uppercase mb-0">梅尾株</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div><!--ここ梅のマークにする-->
+            <div class="divider-custom-line"></div>
+        </div>
+        <!--ボタン-->
+        <p>{{ user.username }}さんの梅尾ポイントは{{ user.umeop }}Pです</p>
+        <p>現在の株価は{{ now.value }}ポイントです．</p>
+        <p>持ち株数は，{{ user.stock }}個です</p>
+        <form action="{% url 'umeo_site:stock_buy' %}" method="POST" class="d-inline-block">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary btn-lg font-weight-bold umeo_button"><i class="fas fa-heart"></i> buy</button>
+            <!--umeo_button反映されない……ピエン．いつか絶対でかいボタンにするんだ．-->
+            <!--でかいボタンには出来たけど，横並びにしたいの......どうするの？-->
+        </form>
+        <br>
+        <form action="{%url 'umeo_site:stock_sell' %}" method="post" class="d-inline-block">
+            {% csrf_token%}
+            <button type="submit" class="btn btn-primary btn-lg font-weight-bold umeo_button"><i class="fas fa-level-up-alt"></i> sell</button>
+        </form>
+    </div>
+</header>
 
 {% endblock %}

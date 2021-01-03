@@ -19,7 +19,7 @@ class MyUserCreationForm(UserCreationForm):
   
 class MyUserAdmin(UserAdmin):
     fieldsets = (
-        (None, {'fields': ('username', 'bairitsu', 'umeop')}),
+        (None, {'fields': ('username', 'bairitsu', 'umeop', 'stock')}),
         (_('Personal info'), {'fields': ('first_name', 'last_name')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
@@ -33,7 +33,7 @@ class MyUserAdmin(UserAdmin):
     )
     form = MyUserChangeForm
     add_form = MyUserCreationForm
-    list_display = ('username', 'umeop', 'bairitsu')
+    list_display = ('username', 'umeop', 'bairitsu', 'stock')
     list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
     search_fields = ('username', 'first_name', 'last_name')
     ordering = ('username',)

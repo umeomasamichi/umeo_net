@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_apscheduler',
     'bootstrap4',
     'umeo_site',
     'users.apps.UsersConfig',

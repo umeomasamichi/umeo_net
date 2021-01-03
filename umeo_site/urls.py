@@ -16,4 +16,6 @@ urlpatterns = [
     path('message_form/', views.CreateMessageView.as_view(), name="message_form"),
     path('rank/', views.RankView.as_view(), name="rank"),
     path('stock/', views.StockView, name="stock"),
+    path('stock_buy/', views.StockBuyView, name="stock_buy"),
+    path('stock_sell/', views.StockSellView, name="stock_sell"),
 ]

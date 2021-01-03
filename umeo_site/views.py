@@ -6,8 +6,9 @@ from django.urls import reverse_lazy
 from . import forms
 from django.shortcuts import render, get_object_or_404
 from users.models import User
-from .models import Message
+from .models import Message, Stock
 from django.contrib.auth.decorators import login_required
+import random
 
 #hombre-nuevo.com/python/python0048/
 #Userのモデルを継承して改造(umeopを持つように変更)
@@ -85,4 +86,31 @@ class RankView(ListView):
         return User.objects.order_by('-umeop')
 
 def StockView(request):
-    return render(request, 'umeo_site/stock.html')
+    return render(request, 'umeo_site/stock.html', {'now': Stock.objects.all().order_by('-created_at')[0]})
+    #stock = Stock()
+    #stock_before = Stock.objects.all().order_by('-created_at')[0]
+    #stock.value = stock_before.value + random.randint(-100, 100)
+    #stock.save()
+
+def StockBuyView(request):
+    user = request.user
+    stock_now = Stock.objects.all().order_by('-created_at')[0]
+    if user.umeop >= stock_now.value:
+        user.umeop -= stock_now.value
+        user.stock += 1
+        user.save()
+    return render(request, 'umeo_site/stock.html', {'now': Stock.objects.all().order_by('-created_at')[0]})
+
+def StockSellView(request):
+    user = request.user
+    stock_now = Stock.objects.all().order_by('-created_at')[0]
+    if user.stock > 0:
+        user.umeop += stock_now.value
+        user.stock -= 1
+        user.save()
+        #https://qiita.com/maisuto/items/eece9d880d94fd241a0d
+        #renderの使い方
+    return render(request, 'umeo_site/stock.html', {'now': Stock.objects.all().order_by('-created_at')[0]})
+
+
+

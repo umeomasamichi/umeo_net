@@ -89,6 +89,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(_('last name'), max_length=150, blank=True)
     email = models.EmailField(_('email address'), blank=True)
     umeop = models.IntegerField(_('Umeo Point'), default=0, blank=True)
+    stock = models.IntegerField(_('Stock'), default=0, blank=True)
     bairitsu = models.IntegerField(_('Bairitsu'), default=1, blank=True)
     is_staff = models.BooleanField(
         _('staff status'),
