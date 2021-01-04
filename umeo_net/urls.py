@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from umeo_site import jobs
 
 urlpatterns = [
     path('polls/', include('polls.urls')),
