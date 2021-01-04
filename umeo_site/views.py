@@ -87,7 +87,7 @@ class RankView(ListView):
 
 def StockView(request):
     return render(request, 'umeo_site/stock.html', {'now': Stock.objects.all().order_by('-created_at')[0],
-                                                    'stock': Stock.objects.all().order_by('-created_at')[0:11]})
+                                                    'stock': Stock.objects.all().order_by('-created_at')[0:100]})
     #stock = Stock()
     #stock_before = Stock.objects.all().order_by('-created_at')[0]
     #stock.value = stock_before.value + random.randint(-100, 100)
@@ -101,7 +101,7 @@ def StockBuyView(request):
         user.stock += 1
         user.save()
     return render(request, 'umeo_site/stock.html', {'now': Stock.objects.all().order_by('-created_at')[0],
-                                                    'stock': Stock.objects.all().order_by('-created_at')[0:11]})
+                                                    'stock': Stock.objects.all().order_by('-created_at')[0:30]})
 
 def StockSellView(request):
     user = request.user
@@ -113,7 +113,7 @@ def StockSellView(request):
         #https://qiita.com/maisuto/items/eece9d880d94fd241a0d
         #renderの使い方
     return render(request, 'umeo_site/stock.html', {'now': Stock.objects.all().order_by('-created_at')[0],
-                                                    'stock': Stock.objects.all().order_by('-created_at')[0:11]})
+                                                    'stock': Stock.objects.all().order_by('-created_at')[0:30]})
 
 
 
