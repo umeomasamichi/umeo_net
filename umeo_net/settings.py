@@ -25,7 +25,7 @@ SECRET_KEY = 'frw9r)thr&+@wd7q^p+docs*(q)ya&^_0l#e=q%a&ygz#m@h8&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['18.183.181.195']
 
 
 # Application definition
@@ -85,8 +85,15 @@ WSGI_APPLICATION = 'umeo_net.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        #'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'umeo_database',
+        'USER': 'kuwayama',
+        'PASSWORD': 'kta12345',
+        'HOST': 'localhost',
+        'PORT': '',
+        # 変えるところ2: DBエンジンをPostgreSQLにして、NAMEとUSERとPASSWORDをそれぞれ編集追記してください。
     }
 }
 
