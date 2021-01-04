@@ -32,7 +32,6 @@ ALLOWED_HOSTS = ['18.183.181.195']
 
 INSTALLED_APPS = [
     'django_apscheduler',
-    'bootstrap4',
     'umeo_site',
     'users.apps.UsersConfig',
     #'umeo_site.apps.UmeoSiteConfig',
@@ -71,7 +70,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
             'builtins':[
-                'bootstrap4.templatetags.bootstrap4',
             ],
         },
     },

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-{% bootstrap_css %}
+
 {% load static %}
 
 <html lang="en">
@@ -43,15 +43,20 @@
             </div>
         </nav>
 
+        <div class="footerFixed">
+
         {% block content %}
         {% endblock %}
 
 
 
         <!-- Copyright Section-->
-        <div class="copyright py-4 text-center text-white">
+        <footer>
+        <div class="py-4 text-center text-white">
             <div class="container"><small>Copyright © Your Website 2020</small></div>
         </div>
+        </footer>
+        
 
 
         <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
