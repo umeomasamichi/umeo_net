@@ -35,7 +35,7 @@
         var ctx = document.getElementById('ex_chart');
 
         var data = {
-            labels: ["-10", "-9", "-8", "-7", "-6", "-5" ,"-4", "-3", "-2", "-1", "now",],
+            labels: [{%for s in stock reversed%}"{{s.created_at.minute}}", {%endfor%}],
             datasets: [{
                 label: '最近の株価変動',
                 data: [{%for s in stock reversed%}'{{s.value}}', {%endfor%}],
@@ -64,18 +64,19 @@
         });
         </script>
 
-
-        <form action="{% url 'umeo_site:stock_buy' %}" method="POST" class="d-inline-block pt-5">
+        <div style="display:inline-flex">
+        <form action="{% url 'umeo_site:stock_buy' %}" method="POST" class="form-inline mr-3">
             {% csrf_token %}
-            <button type="submit" class="btn btn-primary btn-lg font-weight-bold umeo_button"><i class="fas fa-heart"></i> buy</button>
+            <button type="submit" style="width:220px;height:220px" class="btn btn-primary btn-lg font-weight-bold umeo_button"><i class="fas fa-heart"></i> buy</button>
             <!--umeo_button反映されない……ピエン．いつか絶対でかいボタンにするんだ．-->
             <!--でかいボタンには出来たけど，横並びにしたいの......どうするの？-->
         </form>
         <br>
-        <form action="{%url 'umeo_site:stock_sell' %}" method="post" class="d-inline-block">
+        <form action="{%url 'umeo_site:stock_sell' %}" method="post" class="form-inline">
             {% csrf_token%}
-            <button type="submit" class="btn btn-primary btn-lg font-weight-bold umeo_button"><i class="fas fa-level-up-alt"></i> sell</button>
+            <button type="submit" style="width:220px;height:220px" class="btn btn-primary btn-lg font-weight-bold umeo_button"><i class="fas fa-level-up-alt"></i> sell</button>
         </form>
+        </div>
     </div>
 </header>
 
