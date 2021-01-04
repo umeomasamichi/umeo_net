@@ -20,7 +20,52 @@
         <p>{{ user.username }}さんの梅尾ポイントは{{ user.umeop }}Pです</p>
         <p>現在の株価は{{ now.value }}ポイントです．</p>
         <p>持ち株数は，{{ user.stock }}個です</p>
-        <form action="{% url 'umeo_site:stock_buy' %}" method="POST" class="d-inline-block">
+        <!--<p>[{%for s in stock reversed%}'{{s.value}}', {%endfor%}],</p>-->
+        <p>[{%for s in stock reversed%}"{{s.created_at.minute}}", {%endfor%}],</p>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+        
+        <style>
+        #ex_chart {max-width:640px;max-height:480px;}
+        </style>
+
+        <canvas id="ex_chart"></canvas>
+
+        <script>
+        var ctx = document.getElementById('ex_chart');
+
+        var data = {
+            labels: ["-10", "-9", "-8", "-7", "-6", "-5" ,"-4", "-3", "-2", "-1", "now",],
+            datasets: [{
+                label: '最近の株価変動',
+                data: [{%for s in stock reversed%}'{{s.value}}', {%endfor%}],
+                lineTension: 0,
+                borderColor: 'rgba(255, 100, 100, 1)',
+                fill: false,
+                borderWidth: 3
+            }]
+        };
+
+        var options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        //min: 300
+                        beginAtZero: true
+                    }
+                }]
+            }
+        };
+
+        var ex_chart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+        </script>
+
+
+        <form action="{% url 'umeo_site:stock_buy' %}" method="POST" class="d-inline-block pt-5">
             {% csrf_token %}
             <button type="submit" class="btn btn-primary btn-lg font-weight-bold umeo_button"><i class="fas fa-heart"></i> buy</button>
             <!--umeo_button反映されない……ピエン．いつか絶対でかいボタンにするんだ．-->
