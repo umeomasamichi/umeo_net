@@ -4,9 +4,9 @@ from django.views.generic import TemplateView,CreateView,DetailView,ListView
 #from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy 
 from . import forms
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from users.models import User
-from .models import Message, Stock
+from .models import Message, Stock, Music
 from django.contrib.auth.decorators import login_required
 import random
 from datetime import date, datetime
@@ -122,5 +122,17 @@ def StockSellView(request):
                                                     'stock': Stock.objects.all().order_by('-created_at')[0:30]})
 
 
+def UploadView(request):
+    if request.method == 'POST':
+        form = forms.MusicForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('umeo_site:home')
+    else:
+        form = forms.MusicForm()
+    return render(request, 'umeo_site/model_form_upload.html', {
+        'form': form
+    })
 
-
+class Upload2View(TemplateView):
+    template_name = "umeo_site/upload2.html"
