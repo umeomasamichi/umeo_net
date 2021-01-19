@@ -19,7 +19,9 @@
             <div class="divider-custom-line"></div>
         </div>
         <!-- Masthead Subheading-->
-        <h3 class="masthead-subheading font-weight-light mb-0">{{ user.username }}さん ようこそ！<br>あなたの梅尾ポイントは{{ user.umeop }}Pです！</h3>
+        <h2 class="masthead-subheading font-weight-light mb-0">{{ user.username }}さん ようこそ！<br>あなたの梅尾ポイントは{{ user.umeop }}Pです！</h2>
+        <br>
+        <h2>梅尾の誕生日まで，あと{{remain}}日</h2>
     </div>
 </header>
 <!-- Portfolio Section-->
@@ -41,7 +43,7 @@
             梅尾プロフィール：めっちゃかっこよく
             梅尾の画像がいたるところに．パラちゃん
 
-            梅尾の誕生日まであと～日
+            #梅尾の誕生日まであと～日
 
             梅尾ポイントと壁紙，サインとかを引き換え
 
@@ -55,8 +57,8 @@
             リンク
             YouTube, Twitter, Note, 天野さん
             
-            1:梅尾好きボタン button
-            2:おめでとうメッセージ message （名前，メッセージ）が記入できるフォーム　掲示板（名前はユーザ名でいいや）
+            #1:梅尾好きボタン button
+            #2:おめでとうメッセージ message （名前，メッセージ）が記入できるフォーム　掲示板（名前はユーザ名でいいや）
             4:ランキング ranking
             :プロフィール 名前，umeop, 持ち株， ランキング， プロフィール画像
             3:梅尾株　stock グラフ表示　１時間ごとに変動させるのは，どうやってやるの？　持ち株数はUserにくっつける？
@@ -201,6 +203,6 @@
             </div>
         </div>
     </div>
-</footer>
+</div>
 
 {% endblock %}

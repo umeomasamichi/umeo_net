@@ -9,6 +9,7 @@ from users.models import User
 from .models import Message, Stock
 from django.contrib.auth.decorators import login_required
 import random
+from datetime import date, datetime
 
 #hombre-nuevo.com/python/python0048/
 #Userのモデルを継承して改造(umeopを持つように変更)
@@ -25,8 +26,13 @@ class IndexView(TemplateView):
     template_name = "umeo_site/index.html"
 
 
+today = datetime.today()
+birth_day = datetime(2021, 10, 1)
+dt = birth_day - today
+
 class HomeView(TemplateView):
     template_name = "umeo_site/home.html"
+    extra_context = {"remain":dt.days}
 #ログインしてない時の処理を書かなきゃ（もしかしてこの処理，全部のページでいるのでは？）
 
 class UserCreateView(CreateView):
@@ -114,6 +120,7 @@ def StockSellView(request):
         #renderの使い方
     return render(request, 'umeo_site/stock.html', {'now': Stock.objects.all().order_by('-created_at')[0],
                                                     'stock': Stock.objects.all().order_by('-created_at')[0:30]})
+
 
 
 
