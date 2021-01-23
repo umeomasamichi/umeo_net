@@ -17,11 +17,16 @@
             <div class="divider-custom-line"></div>
         </div>
         <!--ボタン-->
-        <p>{{ user.username }}さんの梅尾ポイントは{{ user.umeop }}Pです</p>
-        <p>現在の株価は{{ now.value }}ポイントです．</p>
+        <p>{{ user.username }}さんの梅尾ポイントは{{ user.umeop }}Pointです</p>
+        <p>現在の株価は{{ now.value }}Pointです</p>
         <p>持ち株数は，{{ user.stock }}個です</p>
         <!--<p>[{%for s in stock reversed%}'{{s.value}}', {%endfor%}],</p>-->
-        <p>[{%for s in stock reversed%}"{{s.created_at.minute}}", {%endfor%}],</p>
+        <!--<p>[{%for s in stock reversed%}"{{s.created_at.minute}}", {%endfor%}],</p>-->
+
+
+        <!-- for ajax-->
+        
+        <!-- /for ajax-->
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
         
@@ -64,19 +69,21 @@
         });
         </script>
 
+
         <div style="display:inline-flex">
-        <form action="{% url 'umeo_site:stock_buy' %}" method="POST" class="form-inline mr-3">
+        
+        <form action="{% url 'umeo_site:stock' %}?id=100" method="POST" class="form-inline mr-3">
             {% csrf_token %}
-            <button type="submit" style="width:220px;height:220px" class="btn btn-primary btn-lg font-weight-bold umeo_button"><i class="fas fa-heart"></i> buy</button>
-            <!--umeo_button反映されない……ピエン．いつか絶対でかいボタンにするんだ．-->
-            <!--でかいボタンには出来たけど，横並びにしたいの......どうするの？-->
+            <button type="submit" style="width:220px;height:220px" class="btn btn-primary btn-lg font-weight-bold umeo_button"><i class="fas fa-heart"></i>{{form}} buy</button>
         </form>
         <br>
-        <form action="{%url 'umeo_site:stock_sell' %}" method="post" class="form-inline">
+        <form action="{%url 'umeo_site:stock' %}?id=200" method="post" class="form-inline">
             {% csrf_token%}
-            <button type="submit" style="width:220px;height:220px" class="btn btn-primary btn-lg font-weight-bold umeo_button"><i class="fas fa-level-up-alt"></i> sell</button>
+            <button type="submit" style="width:220px;height:220px" class="btn btn-primary btn-lg font-weight-bold umeo_button"><i class="fas fa-level-up-alt"></i>{{form}} sell</button>
         </form>
         </div>
+
+
     </div>
 </header>
 

@@ -11,7 +11,7 @@
         <meta name="author" content="" />
         <title>{% block title %}{% endblock %}</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="{% static 'umeo_set/img/favicon.ico' %}" />
+        <link rel="icon" type="image/x-icon" href="{% static 'umeo_site/img/favicon.ico' %}" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -19,6 +19,15 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'umeo_site/css/styles.css'%}" rel="stylesheet" />
+
+        <!--CSS for slick https://b-risk.jp/blog/2020/01/slick-customize/-->
+        <link rel="stylesheet" type="text/css" href="{% static 'umeo_site/css/slick.css'%}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'umeo_site/css/common.css'%}">
+        
+        {% block head %}
+        {% endblock %}
+
+
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -73,5 +82,11 @@
         
         <!-- Core theme JS-->
         <script src="{% static 'umeo_site/js/scripts.js'%}"></script>
+        <!--JS for slick-->
+        <script src="{% static 'umeo_site/js/slick.min.js'%}"></script>
+        <script src="{% static 'umeo_site/js/common.js'%}"></script>
+
+        
+        
     </body>
 </html>

@@ -1,0 +1,52 @@
+{% extends 'umeo_site/base.html' %}
+
+{% load static %}
+
+{% block title %}Umeo-Net{% endblock %}
+
+{% block head %}
+
+<meta charset="UTF-8"><title>デモ</title>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://blog.appsol-one.com/custom/00-page/top/typed.js"></script>
+
+{% endblock %}
+
+
+{% block content %}
+    
+<header class="masthead text-secondary text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Icon Divider-->
+        <div class="divider-custom d-inline">
+            <span id="typed-sample" style="white-space:pre" class="typed"></span>
+        </div>
+    </div>
+</header>
+    
+
+
+<!-- ############ javascript  ############ -->
+<script type="text/javascript">
+$(function(){
+    
+    // 文章のアニメーションセット
+    var typed = new Typed('#typed-sample', {
+        strings: [
+        'ようこそ{{ user.username }}さん',
+        'このサイトは桑山の自己満足',
+        'このサイトは梅尾の誕生日を祝うために\n作成されました',
+        'UmeoPointを貯めて，\n梅尾への気持ちを表しましょう',
+        ],	
+        typeSpeed: 70,
+        backSpeed: 50,
+        startDelay: 1000,
+        loop: false,
+        smartBackspace: true,
+        cursorChar: "|",
+    });
+});
+</script>
+<!-- ############ /javascript  ############ -->
+{% endblock %}

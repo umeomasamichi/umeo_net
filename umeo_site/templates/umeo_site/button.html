@@ -18,26 +18,64 @@
             <div class="divider-custom-icon"><i class="fas fa-star"></i></div><!--ここ梅のマークにする-->
             <div class="divider-custom-line"></div>
         </div>
-        <!--ボタン-->
-        <h3 class="">{{ user.username }}さんの梅尾ポイントは{{ user.umeop }}Pです</p>
-        <h3 class="">{{ user.username }}さんのランクは{{ user.bairitsu }}です</p>
-        <h3 class="mb-5">次の倍率に進むためのポイントは{{ user.bairitsu|next_point:10 }}Pです</p>
+        
 
-            
+        <div class="result">
+        <h3>{{ user.username }}さんの梅尾ポイントは{{ user.umeop }}Pです</h3>
+        <h3>{{ user.username }}さんのレベルは{{ user.bairitsu }}です</h3>
+        <h3 class="mb-5">次のレベルに進むためのポイントは{{ user.bairitsu|next_point:10 }}Pです</h3>
+        </div>
+        
+        
+
         <div style="display:inline-flex">
-        <form action="{% url 'umeo_site:button' %}" method="POST" class="form-inline mr-3">
-            {% csrf_token %}
-            <button type="submit" style="width:220px;height:220px" class="btn btn-primary btn-lg font-weight-bold"><i class="fas fa-heart"></i> Like</button>
-            <!--umeo_button反映されない……ピエン．いつか絶対でかいボタンにするんだ．-->
-            <!--でかいボタンには出来たけど，横並びにしたいの......どうするの？-->
-        </form>
+        
+        <button type="submit" style="width:220px;height:220px"  class="like btn btn-primary btn-lg font-weight-bold mr-5"><i class="fas fa-heart"></i> Like</button>
+
+        <!--umeo_button反映されない……ピエン．いつか絶対でかいボタンにするんだ．-->
+        <!--でかいボタンには出来たけど，横並びにしたいの......どうするの？-->
+        
         <br>
-        <form action="{%url 'umeo_site:change' %}" method="post" class="form-inline">
-            {% csrf_token%}
-            <button type="submit" style="width:220px;height:220px" class="btn btn-primary btn-lg font-weight-bold umeo_button"><i class="fas fa-level-up-alt"></i> Rank Up</button>
-        </form>
+        <button type="submit" style="width:220px;height:220px"  class="level btn btn-primary btn-lg font-weight-bold"><i class="fas fa-level-up-alt"></i> Rank Up</button>
+        
         </div>
     </div>
 </header>
+
+
+<!--https://www.geeksforgeeks.org/handling-ajax-request-in-django/
+    結局これを参考にした
+    formで囲んだのと，event.preventDefault()は自分でつけた
+    これがないと，複数のボタンがview側で区別できなかった-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $('.like').click(function(){
+    event.preventDefault();
+    $.ajax(
+    {
+        type:"GET",
+        url: "{% url 'umeo_site:button_ajax' %}?id=100",
+        //dataは，HttpResponseの引数
+        success: function(data)
+        {
+            $(".result").empty().append(data);
+        }
+    })
+    });
+    $('.level').click(function(){
+    $.ajax(
+    {
+        type:"GET",
+        url: "{% url 'umeo_site:button_ajax' %}?id=200",
+        //dataは，HttpResponseの引数
+        success: function(data)
+        {
+            $(".result").empty().append(data);
+        }
+    })
+    });
+</script>
+
 
 {% endblock %}

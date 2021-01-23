@@ -97,3 +97,10 @@ class MusicForm(forms.ModelForm):
     class Meta:
         model = Music
         fields = ('music', )
+
+    
+class GreetForm(forms.Form):
+    name = forms.CharField(label='あなたの名前は？')
+
+class StockForm(forms.Form):
+    number = forms.IntegerField(label="個数")
