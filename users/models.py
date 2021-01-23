@@ -76,10 +76,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     username_validator = UnicodeUsernameValidator()
 
     username = models.CharField(
-        _('username'),
+        _('ユーザ名'),
         max_length=150,
         unique=True,
-        help_text=_('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.'),
+        #help_text=_('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.'),
+        help_text=_('<br>必須．日本語でも大丈夫です.'),
         validators=[username_validator],
         error_messages={
             'unique': _("A user with that username already exists."),

@@ -123,18 +123,19 @@ def StockView(request):
     f = forms.StockForm()
     id = request.GET.get("id")
     stock_now = Stock.objects.all().order_by('-created_at')[0]
-    number = int(request.POST["number"])
-    if id == '100':
-        #できれば，無理な時の処理もelseで書きたい
-        if user.umeop >= (stock_now.value * number):
-            user.umeop -= stock_now.value * number
-            user.stock += number
-            user.save()
-    elif id=='200':
-        if user.stock - number >= 0:
-            user.umeop += stock_now.value * number
-            user.stock -= number
-            user.save()
+    if "number" in request.POST:
+        number = int(request.POST["number"])
+        if id == '100':
+            #できれば，無理な時の処理もelseで書きたい
+            if user.umeop >= (stock_now.value * number):
+                user.umeop -= stock_now.value * number
+                user.stock += number
+                user.save()
+        elif id=='200':
+            if user.stock - number >= 0:
+                user.umeop += stock_now.value * number
+                user.stock -= number
+                user.save()
     return render(request, 'umeo_site/stock.html', {'now': Stock.objects.all().order_by('-created_at')[0],
                                                     'stock': Stock.objects.all().order_by('-created_at')[0:100],
                                                     'form':f})
