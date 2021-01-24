@@ -81,7 +81,7 @@ def UmeoButtonAjax(request):
                 user.save()
         return HttpResponse("<h3>"+ str(user.username) +"さんの梅尾ポイントは" + str(user.umeop) + "Pです</h3>" +
                             "<h3>"+ str(user.username) +"さんのレベルは" + str(user.bairitsu) +"です</h3>" +
-                            "<h3 class='mb-5'>次のレベルに進むためのポイントは" + str(bai*bai*10) +"Pです</h3>")
+                            "<h3 class='mb-5'>次のレベルに進むためのポイントは" + str(user.bairitsu*user.bairitsu*10) +"Pです</h3>")
     else:
         return HttpResponse("failed")
 
