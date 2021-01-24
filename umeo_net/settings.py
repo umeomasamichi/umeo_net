@@ -140,3 +140,8 @@ LOGOUT_REDIRECT_URL = 'umeo_site:index'
 
 AUTH_USER_MODEL = 'users.User'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
+

@@ -9,3 +9,9 @@ class Message(models.Model):
 class Stock(models.Model):
     value = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+class Music(models.Model):
+    uploader = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True)
+    music = models.FileField(upload_to='music/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    

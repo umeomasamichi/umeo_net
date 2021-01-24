@@ -4,7 +4,7 @@ from django.contrib.auth import (
     authenticate, get_user_model, password_validation,
 )
 from users.models import User
-from .models import Message
+from .models import Message, Music
 from django.utils.translation import gettext, gettext_lazy as _
 from django.core.exceptions import ValidationError
 
@@ -26,19 +26,20 @@ class UserCreationForm(forms.ModelForm):
     password.
     """
     error_messages = {
-        'password_mismatch': _('The two password fields didn’t match.'),
+        'password_mismatch': _('入力した2つのパスワードが一致しません'),
     }
     password1 = forms.CharField(
-        label=_("Password"),
+        label=_("パスワード"),
         strip=False,
         widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
-        help_text=password_validation.password_validators_help_text_html(),
+        #help_text=password_validation.password_validators_help_text_html(),
+        help_text = _("<br>最低でも，8文字以上の長さ<br>数字のみのパスワードは禁止<br>他のサイトのパスワードや，個人情報に関係するパスワードにしないでください<br>")
     )
     password2 = forms.CharField(
-        label=_("Password confirmation"),
+        label=_("パスワード確認"),
         widget=forms.PasswordInput(attrs={'autocomplete': 'new-password'}),
         strip=False,
-        help_text=_("Enter the same password as before, for verification."),
+        help_text=_("<br>上と同じパスワードをもう一度記入してください"),
     )
 
     class Meta:
@@ -92,3 +93,15 @@ class MessageForm(forms.ModelForm):
         labels = {
             'body': 'メッセージ',
         }
+
+class MusicForm(forms.ModelForm):
+    class Meta:
+        model = Music
+        fields = ('music', )
+
+    
+class GreetForm(forms.Form):
+    name = forms.CharField(label='あなたの名前は？')
+
+class StockForm(forms.Form):
+    number = forms.IntegerField(label="個数")

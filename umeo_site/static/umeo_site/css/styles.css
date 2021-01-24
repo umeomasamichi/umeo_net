@@ -10121,7 +10121,7 @@ h3 {
 .masthead .masthead-subheading {
   font-size: 1.25rem;
 }
-.masthead .masthead-avatar {
+.masthead-avatar {
   width: 20rem;
 }
 
@@ -10292,3 +10292,16 @@ footer{
     font-size: 1.5rem;
   }
 }
+
+/*for ranking*/
+
+table td img{
+  width: 50px;
+  height: auto;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+/*for stock*/

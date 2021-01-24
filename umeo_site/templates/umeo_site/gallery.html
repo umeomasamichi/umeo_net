@@ -1,0 +1,72 @@
+{% extends 'umeo_site/base.html' %}
+
+{% load static %}
+
+{% block title %}Umeo-Net{% endblock %}
+
+{% block content%}
+
+<p>てすと1</p>
+<p>テスト2</p>
+<p>テスト3</p>
+<p>テスト4</p>
+<p>テスト5</p>
+<p>テスト6</p>
+
+
+<div class = "text-content">
+    <span class = "type-text" id="ityped"></span>
+</div>
+
+<script src="https://unpkg.com/ityped@1.0.3"></script>
+<script>
+    ityped.init(document.querySelector("#ityped"), {
+        strings: ['梅尾です', '梅尾なのです'],        //表示させたい文字の設定 区切りはカンマ 
+        startDelay: 200,                                                  //アニメーション開始までの遅延、大きいほど遅れる
+        typeSpeed: 100,                                                   //表示させるスピード、大きいほどゆっくり
+        loop: true,                                                      //ループ
+        backSpeed:  80,                                                   //戻るスピード
+        backDelay:  150,                                                  //戻る時間指定
+        showCursor: true,                                                 //カーソル表示
+        cursorChar: "|",                                                  //カーソルとして表示するテキスト
+    })
+</script>
+
+
+
+<div class="slider-container">
+    <div class="slider">
+        <div><img alt="画像1" src="{% static 'umeo_site/img/portfolio/cabin.png'%}" /></div>
+        <div><img alt="画像2" src="{% static 'umeo_site/img/portfolio/cake.png'%}" /></div>
+        <div><img alt="画像3" src="{% static 'umeo_site/img/portfolio/submarine.png'%}" /></div>
+        <div><img alt="画像4" src="{% static 'umeo_site/img/portfolio/submarine.png'%}" /></div>
+        <div><img alt="画像5" src="{% static 'umeo_site/img/portfolio/submarine.png'%}" /></div>
+    </div>
+</div>
+<div class="slider-nav-container">
+    <div class="slider-nav"></div>
+</div>
+
+
+<!--
+<ul class="slide">
+    <li class="item">
+      <img src="http://placehold.jp/1920x1080.png?text=1" />
+    </li>
+    <li class="item">
+      <img src="http://placehold.jp/1920x1080.png?text=2" />
+    </li>
+    <li class="item">
+      <img src="http://placehold.jp/1920x1080.png?text=3" />
+    </li>
+    <li class="item">
+      <img src="http://placehold.jp/1920x1080.png?text=4" />
+    </li>
+    <li class="item">
+      <img src="http://placehold.jp/1920x1080.png?text=5" />
+    </li>
+  </ul>
+-->
+
+
+{% endblock %}
