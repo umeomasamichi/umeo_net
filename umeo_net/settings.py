@@ -132,6 +132,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = '/usr/share/nginx/html/static'
 STATIC_URL = '/static/'
 
 LOGIN_URL = 'umeo_site:login'
@@ -140,8 +141,7 @@ LOGOUT_REDIRECT_URL = 'umeo_site:index'
 
 AUTH_USER_MODEL = 'users.User'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+MEDIA_ROOT = '/usr/share/nginx/html/media'
 
 
 
