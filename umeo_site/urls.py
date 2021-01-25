@@ -24,6 +24,6 @@ urlpatterns = [
     path('upload2/', views.Upload2View.as_view(), name='upload2'),
     path('gallery/', views.GalleryView.as_view(), name='gallery'),
     path('type/', views.TypeView.as_view(), name='type'),
-    path('skrolle/', views.SkrolleView.as_view(), name='skrolle'),
+    path('skrollr/', views.SkrollrView.as_view(), name='skrollr'),
     path('greet/', views.GreetView.as_view(), name='greet'),
 ]

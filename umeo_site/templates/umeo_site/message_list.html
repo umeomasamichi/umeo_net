@@ -13,20 +13,34 @@
         <!-- Masthead Heading-->
         <h1 class="message-heading text-uppercase mb-5 text-center">お祝いメッセージ</h1>
         <!--message-->
+        <div class="card-columns mx-auto p-5">
+            {% for message in object_list %}
+            <div class="card p-3">
+                <h5 class="card-title text-center">{{message.writer}}より</h5>
+                <blockquote class="blockquote mb-0 card-body">
+                  <p>{{message.body | linebreaksbr}}</p>
+                </blockquote>
+            </div>
+            {% endfor %}
+        </div>
+
+
+        <!--
         {% for message in object_list %}
         <div class="card mb-3">
             <div class="card-header">
                 {{message.writer}}より
             </div>
             <div class="card-body">
-                <!--<h5 class="card-title">{{comment.title}}</h5>-->
+                <!--<h5 class="card-title">{{comment.title}}</h5>
                 <!--改行させて表示させる方法
                 https://www.tssol.net/blog/2019/10/20/django-input-textarea-line-breaks-on-html/
-                -->
+                
                 <p class="card-text">{{message.body | linebreaksbr}}</p>
             </div>
         </div>
         {% endfor %}
+        -->
 
     </div>
     <hr>
@@ -37,5 +51,20 @@
         </form>
     </div>
 </div>
+
+<!-- https://getbootstrap.jp/docs/4.2/components/card/
+    これのcard-columnsを参考に．
+<div class="card-columns mx-auto mb-5 px-4">
+    {% for message in object_list %}
+    <div class="card p-3">
+        <h5 class="card-title text-center">{{message.writer}}より</h5>
+        <blockquote class="blockquote mb-0 card-body">
+          <p>{{message.body | linebreaksbr}}</p>
+        </blockquote>
+    </div>
+    {% endfor %}
+</div>
+-->
+
 
 {% endblock %}
