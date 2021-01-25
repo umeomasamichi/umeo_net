@@ -10293,6 +10293,11 @@ footer{
   }
 }
 
+.card-columns {
+  max-width: 1200px;
+}
+
+
 /*for ranking*/
 
 table td img{
@@ -10305,3 +10310,7 @@ table td img{
 }
 
 /*for stock*/
+#id_number{
+  width: 50px;
+  height: 32px
+}

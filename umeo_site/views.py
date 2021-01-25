@@ -188,8 +188,8 @@ class GalleryView(TemplateView):
 class TypeView(TemplateView):
     template_name = "umeo_site/type.html"
 
-class SkrolleView(TemplateView):
-    template_name = "umeo_site/skrolle.html"
+class SkrollrView(TemplateView):
+    template_name = "umeo_site/skrollr.html"
 
 
 

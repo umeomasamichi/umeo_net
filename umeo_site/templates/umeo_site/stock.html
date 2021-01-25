@@ -68,44 +68,21 @@
             options: options
         });
         </script>
-
-        
-        <div style="display:block">
-        <div class="mx-auto">
-        <form action="{% url 'umeo_site:stock' %}?id=100" method="POST" class="form-inline">
-            {% csrf_token %}
-            {{form}} 
-            <button type="submit" style="width:220px;height:220px" class="btn btn-primary btn-lg font-weight-bold"><i class="fas fa-heart"></i>buy</button>
-        </form>
-        </div>
-        <div class="max-auto">
-        <form action="{%url 'umeo_site:stock' %}?id=200" method="post" class="form-inline">
-            {% csrf_token%}
-            {{form}}
-            <button type="submit" style="width:220px;height:220px" class="btn btn-primary btn-lg font-weight-bold"><i class="fas fa-level-up-alt"></i>sell</button>
-        </form>
-        </div>
-        </div>
-
         
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-sm ml-5" style="width:150px">
-                    <form action="{%url 'umeo_site:stock' %}?id=100" method="post" class="form-inline">
+            <div class="row" style="display: flex;">
+                <div class="col-sm  text-center" style="width:150px">
+                    <form action="{%url 'umeo_site:stock' %}?id=100" method="post" class="form-inline justify-content-center">
                         {% csrf_token%}
-                        <div class="w-75">
-                            {{form}}
-                        </div>
-                        <button type="submit" style="width:220px;height:220px" class="btn btn-primary btn-lg font-weight-bold mt-3"><i class="fas fa-heart"></i>buy</button>
+                        {{form}}
+                        <button type="submit" style="width:180px;height:50px" class="mx-3 my-3 btn btn-secondary btn-lg font-weight-bold"><i class="fas fa-money-bill mr-2"></i>BUY</button>
                     </form>
                 </div>
                 <div class="col-sm" style="width:150px">
-                    <form action="{%url 'umeo_site:stock' %}?id=200" method="post" class="form-inline">
+                    <form action="{%url 'umeo_site:stock' %}?id=200" method="post" class="form-inline justify-content-center">
                         {% csrf_token%}
-                        <div class="w-75">
-                            {{form}}
-                        </div>
-                        <button type="submit" style="width:220px;height:220px" class="btn btn-primary btn-lg font-weight-bold mt-3"><i class="fas fa-level-up-alt"></i>sell</button>
+                        {{form}}
+                        <button type="submit" style="width:180px;height:50px" class="mx-3 my-3 btn btn-secondary btn-lg font-weight-bold"><i class="fas fa-coins mr-2"></i>SELL</button>
                     </form>
                 </div>
             </div>
