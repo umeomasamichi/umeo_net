@@ -19,16 +19,44 @@
 <header class="masthead text-secondary text-center">
     <div class="container d-flex align-items-center flex-column">
         <!-- Icon Divider-->
-        <div class="divider-custom d-inline">
+        <div class="divider-custom d-inline" style="font-family: DotGothic16;">
             <span id="typed-sample" style="white-space:pre" class="typed"></span>
         </div>
     </div>
 </header>
-    
+
+<p>r_days: {{r_days}}</p>
+<p>flag: {{flag}}</p>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">ログインボーナス</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{r_days}}日連続ログインボーナス
+          梅尾株を{{r_days}}個プレゼント！！
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
 
 
 <!-- ############ javascript  ############ -->
 <script type="text/javascript">
+{% if  flag == 1 %}
+$(window).on('load',function(){
+        $('#exampleModal').modal('show');
+});
+{% endif %}
+
 $(function(){
     
     // 文章のアニメーションセット
