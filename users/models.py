@@ -105,6 +105,9 @@ class User(AbstractBaseUser, PermissionsMixin):
             'Unselect this instead of deleting accounts.'
         ),
     )
+    
+    running_days = models.IntegerField(_('Running days'), default=0, blank=True)
+    date_mylogin = models.DateTimeField(_('date mylogin'), default=timezone.now, blank=True)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
     objects = UserManager()

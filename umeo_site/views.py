@@ -9,7 +9,7 @@ from users.models import User
 from .models import Message, Stock, Music
 from django.contrib.auth.decorators import login_required
 import random
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from django.http import HttpResponse
 
 #hombre-nuevo.com/python/python0048/
@@ -33,7 +33,37 @@ dt = birth_day - today
 
 class HomeView(TemplateView):
     template_name = "umeo_site/home.html"
-    extra_context = {"remain":dt.days}
+    def get(self, request, *args, **kwargs):
+        user = self.request.user
+        #まず日付を持ってくる．このとき，9時間進めないと，dayの情報がちゃんと取れないので注意（日本時間が9時間ずれていることに由来）
+        tmp_last_login = user.last_login + timedelta(hours=9)
+        tmp_date_mylogin = user.date_mylogin + timedelta(hours=9)
+
+        last_login = datetime(tmp_last_login.year, tmp_last_login.month, tmp_last_login.day)
+        date_mylogin = datetime(tmp_date_mylogin.year, tmp_date_mylogin.month, tmp_date_mylogin.day)
+
+        deltadays = (last_login - date_mylogin)
+
+        user.date_mylogin = user.last_login
+        #flagはログインボーナス表示をするどうか
+        if deltadays.days == 1:
+            #1日ぶりにログインしたら，継続日数をプラス１して，保存して，投げる．
+            user.running_days += 1
+            user.stock += user.running_days
+            user.save()
+            r_days = user.running_days
+            return render(request, "umeo_site/home.html", {'r_days': r_days, 'flag': 1, "remain":dt.days})
+        elif deltadays.days > 1:
+            #2日以上空けてログインしたら，継続日数を１にして，保存して，投げる
+            user.running_days = 1
+            user.stock += 1
+            user.save()
+            r_days = user.running_days
+            return render(request, "umeo_site/home.html", {'r_days': r_days, 'flag': 1, "remain":dt.days})
+        else:
+            #その日にログインしてたら，ボーナス表示を出さない
+            user.save()
+            return render(request, "umeo_site/home.html", {'r_days': user.running_days, 'flag': 0, "remain":dt.days})
 #ログインしてない時の処理を書かなきゃ（もしかしてこの処理，全部のページでいるのでは？）
 
 class UserCreateView(CreateView):
@@ -116,7 +146,7 @@ class RankView(ListView):
     template_name = "umeo_site/rank.html"
     
     def get_queryset(self):
-        return User.objects.order_by('-bairitsu')
+        return User.objects.exclude(username='admin').order_by('-bairitsu')
 
 def StockView(request):
     user = request.user
@@ -187,6 +217,39 @@ class GalleryView(TemplateView):
 
 class TypeView(TemplateView):
     template_name = "umeo_site/type.html"
+
+    def get(self, request, *args, **kwargs):
+        user = self.request.user
+        #まず日付を持ってくる．このとき，9時間進めないと，dayの情報がちゃんと取れないので注意（日本時間が9時間ずれていることに由来）
+        tmp_last_login = user.last_login + timedelta(hours=9)
+        tmp_date_mylogin = user.date_mylogin + timedelta(hours=9)
+
+        last_login = datetime(tmp_last_login.year, tmp_last_login.month, tmp_last_login.day)
+        date_mylogin = datetime(tmp_date_mylogin.year, tmp_date_mylogin.month, tmp_date_mylogin.day)
+
+        deltadays = (last_login - date_mylogin)
+
+        user.date_mylogin = user.last_login
+        #flagはログインボーナス表示をするどうか
+        if deltadays.days == 1:
+            #1日ぶりにログインしたら，継続日数をプラス１して，保存して，投げる．
+            user.running_days += 1
+            user.stock += user.running_days
+            user.save()
+            r_days = user.running_days
+            return render(request, "umeo_site/type.html", {'r_days': r_days, 'flag': 1})
+        elif deltadays.days > 1:
+            #2日以上空けてログインしたら，継続日数を１にして，保存して，投げる
+            user.running_days = 1
+            user.stock += 1
+            user.save()
+            r_days = user.running_days
+            return render(request, "umeo_site/type.html", {'r_days': r_days, 'flag': 1})
+        else:
+            #その日にログインしてたら，ボーナス表示を出さない
+            user.save()
+            return render(request, "umeo_site/type.html", {'r_days': user.running_days, 'flag': 0})
+    
 
 class SkrollrView(TemplateView):
     template_name = "umeo_site/skrollr.html"

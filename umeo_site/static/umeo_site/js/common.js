@@ -1,3 +1,4 @@
+//http://ithat.me/2016/10/17/how-to-use-slick-jquery-plugin
 
 var $slider_container = $('.slider-container'),
     $slider = $('.slider'),
@@ -28,11 +29,11 @@ $slider.slick({
 });
 
 $slider_nav.slick({
-  arrows: true,
-  appendArrows: $slider_nav_container,
+  arrows: false,
+  //appendArrows: $slider_nav_container,
   //Arrowを付けるとクリックしても動かない．．．．．．
-  prevArrow: '<button type="button" class="slick-prev slider-arrow">次</button>',
-  nextArrow: '<i class="slider-arrow slider-next fa fa-angle-right"></i>',
+  //prevArrow: '<div class="slick-prev slider-arrow fa fa-angle-left"></div>',
+  //nextArrow: '<div class="slider-arrow slider-next fa fa-angle-right"></div>',
   slidesToShow: 3,
   asNavFor: $slider,
   focusOnSelect: true,

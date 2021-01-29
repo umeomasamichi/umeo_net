@@ -4,19 +4,19 @@
 
 {% block title %}Umeo-Net{% endblock %}
 
+{% block head %}
+
+{% endblock %}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 {% block content%}
 
-<p>てすと1</p>
-<p>テスト2</p>
-<p>テスト3</p>
-<p>テスト4</p>
-<p>テスト5</p>
-<p>テスト6</p>
+<div class="message text-secondary">
 
-
+<!--
 <div class = "text-content">
     <span class = "type-text" id="ityped"></span>
 </div>
+
 
 <script src="https://unpkg.com/ityped@1.0.3"></script>
 <script>
@@ -31,9 +31,9 @@
         cursorChar: "|",                                                  //カーソルとして表示するテキスト
     })
 </script>
+-->
 
-
-
+<div style="max-width: 700px;" class="mx-auto">
 <div class="slider-container">
     <div class="slider">
         <div><img alt="画像1" src="{% static 'umeo_site/img/portfolio/cabin.png'%}" /></div>
@@ -46,7 +46,7 @@
 <div class="slider-nav-container">
     <div class="slider-nav"></div>
 </div>
-
+</div>
 
 <!--
 <ul class="slide">
@@ -68,5 +68,6 @@
   </ul>
 -->
 
+</div>
 
 {% endblock %}
