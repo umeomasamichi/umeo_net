@@ -91,7 +91,11 @@
             ec2上に反映させる方法
             1. ローカル環境の変更をgitで反映
             add commit push(実際はvscodeのボタンを押せば上手いことやってくれる)
-            2. 
+            2. ec2にログインして，仮想環境に入り，add,commit,pullする
+            3. modelとか変更してたら，migrations, migrate
+            4. static変更してたら， collectstatic
+            5. gunicorn nginxをリスタート
+            以上！
 
 
         -->
@@ -100,68 +104,68 @@
         
         <div class="row justify-content-center">
             <!-- Portfolio Item 1-->
-            <div class="col-md-6 col-lg-4 mb-5">
+            <div class="col-6 col-md-4 col-lg-3 mb-5">
                 <a href="{% url 'umeo_site:button' %}">
                 <div class="portfolio-item mx-auto">
                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                         <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-heart fa-3x mb-3"></i><p class="text-center font-weight-bold ">梅尾ボタン</p></div>
                     </div>
-                    <img class="img-fluid" src="{% static 'umeo_site/img/portfolio/cabin.png'%}" alt="" />
+                    <img class="img-fluid" src="{% static 'umeo_site/img/icon/ume.png'%}" alt="" />
                     
                 </div>
                 </a>
             </div>
             <!-- Portfolio Item 2-->
-            <div class="col-md-6 col-lg-4 mb-5">
+            <div class="col-6 col-md-4 col-lg-3 mb-5">
                 <a href="{% url 'umeo_site:message' %}">
                 <div class="portfolio-item mx-auto">
                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-envelope fa-3x mb-3"></i><p class="text-center font-weight-bold ">梅尾へのメッセージ</p></div>
+                        <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-envelope fa-3x mb-3"></i><p class="text-center font-weight-bold ">梅尾への<br>メッセージ</p></div>
                     </div>
-                    <img class="img-fluid" src="{% static 'umeo_site/img/portfolio/cake.png'%}" alt="" />
+                    <img class="img-fluid" src="{% static 'umeo_site/img/icon/letter.png'%}" alt="" />
                 </div>
                 </a>
             </div>
             <!-- Portfolio Item 3-->
-            <div class="col-md-6 col-lg-4 mb-5">
+            <div class="col-6 col-md-4 col-lg-3 mb-5">
                 <a href="{% url 'umeo_site:rank' %}">
                 <div class="portfolio-item mx-auto">
                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                         <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-crown fa-3x mb-3"></i><p class="text-center font-weight-bold ">ランキング</p></div>
                     </div>
-                    <img class="img-fluid" src="{% static 'umeo_site/img/portfolio/circus.png'%}" alt="" />
+                    <img class="img-fluid" src="{% static 'umeo_site/img/icon/rank.png'%}" alt="" />
                 </div>
                 </a>
             </div>
             <!-- Portfolio Item 4-->
-            <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+            <div class="col-6 col-md-4 col-lg-3 mb-5 mb-lg-0">
                 <a href="{% url 'umeo_site:stock' %}">
                 <div class="portfolio-item mx-auto">
                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                         <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-chart-line fa-3x mb-3"></i><p class="text-center font-weight-bold ">梅尾株</p></div>
                     </div>
-                    <img class="img-fluid" src="{% static 'umeo_site/img/portfolio/game.png'%}" alt="" />
+                    <img class="img-fluid" src="{% static 'umeo_site/img/icon/graph.png'%}" alt="" />
                 </div>
                 </a>
             </div>
             <!-- Portfolio Item 5-->
-            <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
+            <div class="col-6 col-md-4 col-lg-3 mb-5 mb-md-0">
                 <a href="{% url 'umeo_site:gallery' %}">
                 <div class="portfolio-item mx-auto">
                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                         <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-images fa-3x mb-3"></i><p class="text-center font-weight-bold ">梅尾ギャラリー<br>(工事中)</p></div>
                     </div>
-                    <img class="img-fluid" src="{% static 'umeo_site/img/portfolio/safe.png'%}" alt="" />
+                    <img class="img-fluid" src="{% static 'umeo_site/img/icon/picture.png'%}" alt="" />
                 </div>
                 </a>
             </div>
             <!-- Portfolio Item 6-->
-            <div class="col-md-6 col-lg-4">
+            <div class="col-6 col-md-4 col-lg-3">
                 <div class="portfolio-item mx-auto">
                     <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                         <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-dice fa-3x mb-3"></i><p class="text-center font-weight-bold ">梅尾丁半博打<br>(工事中)</p></div>
                     </div>
-                    <img class="img-fluid" src="{% static 'umeo_site/img/portfolio/submarine.png'%}" alt="" />
+                    <img class="img-fluid" src="{% static 'umeo_site/img/icon/coin.png'%}" alt="" />
                 </div>
             </div>
         </div>
@@ -203,18 +207,18 @@
             <div class="col-lg-4 mb-5 mb-lg-0">
                 <h4 class="text-uppercase mb-4">Location</h4>
                 <p class="lead mb-0">
-                    2215 John Daniel Drive
-                    <br />
-                    Clark, MO 65243
+                    大阪府大阪市中央区大阪城１−１
                 </p>
             </div>
             <!-- Footer Social Icons-->
             <div class="col-lg-4 mb-5 mb-lg-0">
                 <h4 class="text-uppercase mb-4">Around the Web</h4>
-                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
-                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
-                <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="https://www.facebook.com/profile.php?id=100009549695254"><i class="fab fa-fw fa-facebook-f"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/Umeo511W28L32"><i class="fab fa-fw fa-twitter"></i></a>
+                <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/Umeo511W28L32"><img src="{% static 'umeo_site/img/note.png'%}" style="width: 50px; height: auto;"></a>
+                <!--<a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
                 <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-dribbble"></i></a>
+                -->
             </div>
             <!-- Footer About Text-->
             <div class="col-lg-4">
@@ -233,15 +237,15 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">ログインボーナス</h5>
+          <h2 class="modal-title text-primary" id="exampleModalLabel">ログインボーナス</h2>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          {{r_days}}日連続ログインボーナス
+        <h3 class="modal-body text-center text-secondary py-1">
+          {{r_days}}日連続ログインボーナス<br><br>
           梅尾株を{{r_days}}個プレゼント！！
-        </div>
+        </h3>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>

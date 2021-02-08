@@ -35,6 +35,9 @@ class HomeView(TemplateView):
     template_name = "umeo_site/home.html"
     def get(self, request, *args, **kwargs):
         user = self.request.user
+        #https://blog.qs-grct.com/2018/10/30/010054/post-1307/
+        if user.is_anonymous:
+            return render(request, "umeo_site/index.html")
         #まず日付を持ってくる．このとき，9時間進めないと，dayの情報がちゃんと取れないので注意（日本時間が9時間ずれていることに由来）
         tmp_last_login = user.last_login + timedelta(hours=9)
         tmp_date_mylogin = user.date_mylogin + timedelta(hours=9)
@@ -52,6 +55,10 @@ class HomeView(TemplateView):
             user.stock += user.running_days
             user.save()
             r_days = user.running_days
+            ''' これやるとしたら，saveの前にstockの処理やらなあかんのと，日数と株の表示を分けなきゃいけない
+            if r_days % 10 == 0:
+                r_days *= 10
+            '''
             return render(request, "umeo_site/home.html", {'r_days': r_days, 'flag': 1, "remain":dt.days})
         elif deltadays.days > 1:
             #2日以上空けてログインしたら，継続日数を１にして，保存して，投げる

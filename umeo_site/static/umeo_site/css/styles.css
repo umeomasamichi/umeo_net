@@ -10253,8 +10253,32 @@ footer{
 
 /*ここから自作*/
 
-.umeo_button{
-  padding: 3rem 3rem !important;
+.umeo_button {
+	display: block;
+	cursor: pointer;
+	max-width: 300px;
+	margin: 1em auto;
+	padding: 20px;
+	border-radius: 4px;
+	box-sizing: border-box;
+	color: #fff;
+	text-align: center;
+	text-decoration: inherit;
+	background: #20b2aa;
+	box-shadow: 0 12px 0 #047c71, 0 24px 0 rgba(0,0,0,.2);
+	transition: color .3s, background .3s, box-shadow .3s, transform 0.3s;
+}
+.umeo_button:hover {
+	background: #3cc4bd;
+	box-shadow: 0 11px 0 #12978d, 0 22px 0 rgba(0,0,0,.2);
+	transform: translateY(3px);
+}
+.umeo_button:active {
+	color: #ddd;
+	background: #12978d;
+	box-shadow: 0 0 0 #047c71, 0 0 0 rgba(0,0,0,.2);
+	transform: translateY(13px);
+	transition-duration: .1s;
 }
 
 .footerFixed{
