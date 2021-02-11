@@ -1,0 +1,121 @@
+
+{% extends 'umeo_site/base.html' %}
+
+{% load static %}
+
+{% block title %}梅尾タイピング{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="typing.css" />
+<audio src ="_sound_anime_mp3_incorrect1.mp3" id="missaudio">現環境では音が鳴りません</audio>
+<audio src ="_sound_battle_mp3_handgun-out-bullets1.mp3" id="correctaudio"></audio>
+<script>
+var wordlist = ["mi-nnnaumeogasukidayo","tatebasyakuyakusuwarebabotanarukusugatahaumeokana", "ugonoumeo","mizumositataruiiumeo","itihuzinitakasannumeo","umeodaisuki","umeonimazizokkonn","umeonoryourihasekaiitiumai","umeoniaitaina", ];
+var wordlistJapanese = ["みーんな梅尾が好きだよ","立てば芍薬座れば牡丹歩く姿は梅尾かな","雨後の梅尾","水も滴るいい梅尾","一富士二鷹三梅尾","梅尾大好き","梅尾にマジぞっこん","梅尾の料理は世界一うまい","梅尾に会いたいな", ];
+     var time_limit = 60;
+     var readytime = 3;
+     var score;
+     var correct;
+     var mistake;
+     var char_num = 0;
+     var word_char;
+     var random;
+     function ready(){
+         readytime = 3;
+         scoredis.innerHTML="";
+         start_button.style.visibility ="hidden";
+         var readytimer = setInterval(function(){
+             count.innerHTML=readytime;
+             readytime--;
+             if(readytime < 0){
+                clearInterval(readytimer);
+                 gameStart();
+                }
+         },1000);
+     }
+     function gameStart(){
+         score = 0.0;
+         mistake = 0;
+         correct = 0;
+         wordDisplay();
+         var time_remaining = time_limit;
+         var gametimer = setInterval(function(){
+            count.innerHTML="残り時間："+time_remaining;
+             time_remaining--;
+             if(time_remaining <= 0){
+             clearInterval(gametimer);
+                 finish();
+         }
+         },1000);
+     }
+     function wordDisplay(){
+         random = Math.floor( Math.random() * wordlist.length );
+         word.innerHTML=wordlist[random];
+         japanese.innerHTML=wordlistJapanese[random];
+         charInsort();
+     }
+     function charInsort(){
+         word_char = wordlist[random].charAt(char_num);
+     }
+     function finish(){
+         score = Math.floor(Math.pow(correct,2) * Math.pow((correct/(correct+mistake)),5));
+         scoredis.innerHTML="スコア:"+score+"点"+"<hr>正タイプ数:"+correct+"<br>ミスタイプ数:"+mistake+"<br>正答率"+(correct/(correct+mistake)*100).toFixed(1)+"%";
+         count.innerHTML="";
+         word.innerHTML="";
+         japanese.innerHTML="";
+         start_button.style.visibility ="visible";
+         word_char=0;
+         random = 0;
+         char_num = 0;
+         //document.location.href = "https://www.google.com";
+     }
+document.onkeydown = function(e) {
+    if(e.keyCode == 189){
+       keyStr = "-";
+       }else if(e.keyCode == 188){
+                keyStr = ","
+                }else{
+ var keyStr = String.fromCharCode(e.keyCode);
+    keyStr = keyStr.toLowerCase();
+       }
+    if(keyStr == word_char){
+        document.getElementById('missaudio').pause();
+        document.getElementById('missaudio').currentTime = 0;
+        document.getElementById('correctaudio').pause();
+        document.getElementById('correctaudio').currentTime = 0;
+        document.getElementById('correctaudio').play();
+        word.innerHTML="<span style='color: red;'>"+wordlist[random].substr(0,char_num+1)+"</span>"+wordlist[random].substr(char_num+1,wordlist[random].length);
+        char_num++;
+        correct++;
+        charInsort();
+       }else{
+           document.getElementById('missaudio').pause();
+           document.getElementById('missaudio').currentTime = 0;
+           document.getElementById('correctaudio').pause();
+           document.getElementById('correctaudio').currentTime = 0;
+           mistake++;
+           document.getElementById('missaudio').play();
+       }
+    if(char_num == wordlist[random].length){
+        char_num=0;
+        wordDisplay();
+       }
+};
+ 
+</script>
+
+{%endblock%}
+
+{% block content %}
+<div class="message text-secondary">
+    <div class="wrap text-center">
+                <input class="btn btn-lg btn-primary font-weight-bold" type="button" id="start_button" value="start" onclick="ready()" style="text-align: center">
+                <div id="count" class="h3"></div>
+                    <h1><div class="mt-5" id="japanese"></div></h1>
+                    <h2><div id="word"></div></h2>
+                <div id="scoredis"></div>
+    </div>
+</div>
+
+<div class="text-center my-5"><h4>ランキングも作る予定．</h4></div>
+{% endblock %}

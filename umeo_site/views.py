@@ -284,3 +284,6 @@ class GreetView(FormView):
         """jQuery に対してレスポンスを返すメソッド"""
         name = form.cleaned_data.get('name')
         return HttpResponse(f'こんにちは、{name}さん！')
+
+class TypingView(TemplateView):
+    template_name = "umeo_site/typing.html"

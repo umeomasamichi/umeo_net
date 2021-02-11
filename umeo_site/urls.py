@@ -26,4 +26,5 @@ urlpatterns = [
     path('type/', views.TypeView.as_view(), name='type'),
     path('skrollr/', views.SkrollrView.as_view(), name='skrollr'),
     path('greet/', views.GreetView.as_view(), name='greet'),
+    path('typing/', views.TypingView.as_view(), name='typing'),
 ]
