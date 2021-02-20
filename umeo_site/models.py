@@ -6,6 +6,11 @@ class Message(models.Model):
     body = models.CharField(max_length=1000)
     created_at = models.DateTimeField(auto_now_add=True)
 
+class Good(models.Model):
+    writer = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, null=True)
+    body = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+
 class Stock(models.Model):
     value = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)

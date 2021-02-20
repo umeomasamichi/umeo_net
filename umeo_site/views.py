@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from . import forms
 from django.shortcuts import render, get_object_or_404, redirect
 from users.models import User
-from .models import Message, Stock, Music
+from .models import Message, Stock, Music, Good
 from django.contrib.auth.decorators import login_required
 import random
 from datetime import date, datetime, timedelta
@@ -287,3 +287,22 @@ class GreetView(FormView):
 
 class TypingView(TemplateView):
     template_name = "umeo_site/typing.html"
+
+
+class GoodListView(ListView):
+    model = Good
+    template_name = "umeo_site/good_list.html"
+    #templateにはmessage_list.htmlが自動的に選ばれるので，
+    #template_nameで上書き．
+
+class GoodCreateView(CreateView):
+    model = Good
+    template_name = "umeo_site/message_form.html"
+    form_class = forms.GoodForm
+    success_url = reverse_lazy('umeo_site:good')
+
+    def form_valid(self, form):
+        form.instance.writer = self.request.user
+        self.request.user.umeop += 1000
+        self.request.user.save()
+        return super(GoodCreateView, self).form_valid(form)
