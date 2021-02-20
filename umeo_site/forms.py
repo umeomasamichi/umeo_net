@@ -4,7 +4,7 @@ from django.contrib.auth import (
     authenticate, get_user_model, password_validation,
 )
 from users.models import User
-from .models import Message, Music
+from .models import Message, Music, Good
 from django.utils.translation import gettext, gettext_lazy as _
 from django.core.exceptions import ValidationError
 
@@ -93,6 +93,21 @@ class MessageForm(forms.ModelForm):
         labels = {
             'body': 'メッセージ',
         }
+
+class GoodForm(forms.ModelForm):
+
+    class Meta:
+        model = Good
+        fields = ('body', )
+        widgets = {
+              'body': forms.Textarea(attrs={
+              'class': 'form-control'
+            }),
+        }
+        labels = {
+            'body': 'メッセージ',
+        }
+
 
 class MusicForm(forms.ModelForm):
     class Meta:
