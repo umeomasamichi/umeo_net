@@ -6,6 +6,7 @@
 
 {% block content%}
 {% load utils %}
+<!--templatetagをload-->
 
 <!-- Masthead-->
 <header class="masthead text-secondary text-center">
@@ -55,29 +56,30 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script type="text/javascript">
     $('.like').click(function(){
-    event.preventDefault();
-    $.ajax(
-    {
-        type:"GET",
-        url: "{% url 'umeo_site:button_ajax' %}?id=100",
-        //dataは，HttpResponseの引数
-        success: function(data)
+        event.preventDefault();
+        $.ajax(
         {
-            $(".result").empty().append(data);
-        }
-    })
+            type:"GET",
+            url: "{% url 'umeo_site:button_ajax' %}?id=100",
+            //dataは，HttpResponseの引数
+            success: function(data)
+            {
+                //resultクラスのやつを消す（empty）．そしてdataを追加
+                $(".result").empty().append(data);
+            }
+        })
     });
     $('.level').click(function(){
-    $.ajax(
-    {
-        type:"GET",
-        url: "{% url 'umeo_site:button_ajax' %}?id=200",
-        //dataは，HttpResponseの引数
-        success: function(data)
-        {
-            $(".result").empty().append(data);
-        }
-    })
+        $.ajax(
+            {
+                type:"GET",
+                url: "{% url 'umeo_site:button_ajax' %}?id=200",
+                //dataは，HttpResponseの引数
+                success: function(data)
+                {
+                    $(".result").empty().append(data);
+                }
+        })
     });
 </script>
 
