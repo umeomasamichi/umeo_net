@@ -47,7 +47,8 @@
                 <div>
                     <i class="fas fa-heart fa-inverse card-img" style="font-size: 400px;"></i>
                     <div class="card-img-overlay d-flex align-items-center justify-content-center">
-                        <h3 class="card-text pb-5">{{message.body | linebreaksbr}}</h3>
+                        <h1 class="position-absolute pb-5" style="font-size: 200px; color: hotpink; z-index: 0; opacity: 0.2;">{{forloop.counter}}</h1>
+                        <h3 class="card-text pb-5" style="z-index: 100;">{{message.body | linebreaksbr}}</h3>
                         <!--全角で13x6くらいの文章なら良い感じ-->
                     </div>
                 </div>
