@@ -27,6 +27,7 @@ urlpatterns = [
     path('skrollr/', views.SkrollrView.as_view(), name='skrollr'),
     path('greet/', views.GreetView.as_view(), name='greet'),
     path('typing/', views.TypingView.as_view(), name='typing'),
+    path('typing/ajax/', views.TypingAjax, name="typing_ajax"),
     path('good100/', views.GoodListView.as_view(), name="good"),
     path('good100_form/', views.GoodCreateView.as_view(), name="good_form"),
 ]

@@ -33,7 +33,7 @@ class MyUserAdmin(UserAdmin):
     )
     form = MyUserChangeForm
     add_form = MyUserCreationForm
-    list_display = ('username', 'umeop', 'bairitsu', 'stock', 'running_days')
+    list_display = ('username', 'umeop', 'bairitsu', 'stock', 'type_score', 'running_days')
     list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
     search_fields = ('username', 'first_name', 'last_name')
     ordering = ('username',)

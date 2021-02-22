@@ -225,6 +225,7 @@ class GalleryView(TemplateView):
 class TypeView(TemplateView):
     template_name = "umeo_site/type.html"
 
+    '''
     def get(self, request, *args, **kwargs):
         user = self.request.user
         #まず日付を持ってくる．このとき，9時間進めないと，dayの情報がちゃんと取れないので注意（日本時間が9時間ずれていることに由来）
@@ -256,7 +257,8 @@ class TypeView(TemplateView):
             #その日にログインしてたら，ボーナス表示を出さない
             user.save()
             return render(request, "umeo_site/type.html", {'r_days': user.running_days, 'flag': 0})
-    
+    '''
+
 
 class SkrollrView(TemplateView):
     template_name = "umeo_site/skrollr.html"
@@ -285,8 +287,25 @@ class GreetView(FormView):
         name = form.cleaned_data.get('name')
         return HttpResponse(f'こんにちは、{name}さん！')
 
-class TypingView(TemplateView):
+class TypingView(ListView):
+    model = User
     template_name = "umeo_site/typing.html"
+    def get_queryset(self):
+        return User.objects.exclude(username='admin').order_by('-type_score')
+
+
+def TypingAjax(request):
+    user = request.user
+    if request.method == 'GET':
+        #クエリを使っている
+        score = int(request.GET.get("score"))
+        if user.type_score <= score:
+            user.type_score = score 
+        user.umeop += score       
+        user.save()
+        return HttpResponse("succesed")
+    else:
+        return HttpResponse("failed")
 
 
 class GoodListView(ListView):

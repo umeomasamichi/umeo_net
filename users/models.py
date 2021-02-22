@@ -92,6 +92,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     umeop = models.IntegerField(_('Umeo Point'), default=0, blank=True)
     stock = models.IntegerField(_('Stock'), default=0, blank=True)
     bairitsu = models.IntegerField(_('Bairitsu'), default=1, blank=True)
+    type_score = models.IntegerField(_('Type Score'), default=0, blank=True)
     is_staff = models.BooleanField(
         _('staff status'),
         default=False,

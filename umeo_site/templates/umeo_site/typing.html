@@ -24,6 +24,7 @@ var wordlistJapanese = ["梅尾の落語はジャズだね","梅尾百まで踊�
          readytime = 3;
          scoredis.innerHTML="";
          start_button.style.visibility ="hidden";
+         rank.style.visibility ="hidden";
          var readytimer = setInterval(function(){
              count.innerHTML=readytime;
              readytime--;
@@ -59,16 +60,32 @@ var wordlistJapanese = ["梅尾の落語はジャズだね","梅尾百まで踊�
      }
      function finish(){
          score = Math.floor(Math.pow(correct,2) * Math.pow((correct/(correct+mistake)),5));
-         scoredis.innerHTML="スコア:"+score+"点"+"<hr>正タイプ数:"+correct+"<br>ミスタイプ数:"+mistake+"<br>正答率"+(correct/(correct+mistake)*100).toFixed(1)+"%";
+         ifscore = Math.floor(Math.pow(correct, 2));
+         scoredis.innerHTML="スコア:"+score+"点"+"<hr>正タイプ数:"+correct+"<br>ミスタイプ数:"+mistake+"<br>正答率"+(correct/(correct+mistake)*100).toFixed(1)+"%<br>ミスを全て無くせば"+ifscore+"点になります！";
          count.innerHTML="";
          word.innerHTML="";
          japanese.innerHTML="";
          start_button.style.visibility ="visible";
+         rank.style.visibility ="visible";
          word_char=0;
          random = 0;
          char_num = 0;
          //document.location.href = "https://www.google.com";
-     }
+        $.ajax({
+            method: 'GET',
+            url: '{% url "umeo_site:typing_ajax" %}',
+            data: {'score': score},
+            success: function (data) {
+                //this gets called when server returns an OK response
+                //alert(data);
+                //$(".test").empty().append(data);
+            },
+            error: function (data) {
+                alert("it didnt work");
+            }
+        });
+    }
+
 document.onkeydown = function(e) {
     if(e.keyCode == 189){
        keyStr = "-";
@@ -107,15 +124,43 @@ document.onkeydown = function(e) {
 {%endblock%}
 
 {% block content %}
-<div class="message text-secondary">
+<div class="message text-secondary text-center">
+    <h1 class="mb-5">梅尾ボタン</h1>
     <div class="wrap text-center">
                 <input class="btn btn-lg btn-primary font-weight-bold" type="button" id="start_button" value="start" onclick="ready()" style="text-align: center">
                 <div id="count" class="h3"></div>
                     <h1><div class="mt-5" id="japanese"></div></h1>
                     <h2><div id="word"></div></h2>
-                <div id="scoredis"></div>
+                <h4 id="scoredis"></h4>
+                <br>
+    </div>
+
+
+    <div class="d-flex flex-column mx-5 text-center" id="rank">
+        <div class="table-responsive">
+            <table class="table h5 text-secondary text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Ranking</th>
+                        <th scope="col">UserName</th>
+                        <th scope="col">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for users in object_list %}
+                    <!--ログインユーザの行をactiveに-->
+                    <tr class="align-middle {% if users.username == user.username %}table-active{% endif %}">
+                        <th scope="row" class="h2">{{forloop.counter}}</th>
+                        <td class="text-left"><img src="{% static 'umeo_site/img/umeoavata.png' %}"> {{users.username}}</td>
+                        <td>{{users.type_score}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <h6>新記録は画面更新すると反映されます</h6>
     </div>
 </div>
 
-<div class="text-center my-5"><h4>ランキングも作る予定．</h4></div>
+
 {% endblock %}
