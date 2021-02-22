@@ -25,7 +25,7 @@ SECRET_KEY = 'frw9r)thr&+@wd7q^p+docs*(q)ya&^_0l#e=q%a&ygz#m@h8&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['54.199.27.214']
+ALLOWED_HOSTS = ['umeo-net.com', '54.199.27.214']
 
 
 # Application definition
