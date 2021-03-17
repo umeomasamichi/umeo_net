@@ -10321,6 +10321,23 @@ footer{
   max-width: 1200px;
 }
 
+/*for home*/
+.masthead-heading-ume{
+  font-size: 2.2rem;
+  line-height: 2.4rem;
+}
+@media (min-width: 992px) {
+  .masthead-heading-ume{
+    font-size: 4rem;
+    line-height: 5rem;
+  }
+  .masthead-ume-nokori{
+    font-size: 3rem;
+  }
+}
+
+
+
 
 /*for ranking*/
 

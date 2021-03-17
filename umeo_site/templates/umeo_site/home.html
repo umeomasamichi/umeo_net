@@ -11,7 +11,7 @@
         <!-- Masthead Avatar Image-->
         <img class="masthead-avatar mb-3" src="{% static 'umeo_site/img/umeoavata.png' %}" alt="" />
         <!-- Masthead Heading-->
-        <h1 class="masthead-heading text-uppercase mb-0">梅尾の誕生日<br>おめでとうサイト</h1>
+        <h1 class="masthead-heading-ume text-uppercase mb-0">梅尾の誕生日<br>おめでとうサイト</h1>
         <!-- Icon Divider-->
         <div class="divider-custom divider-light">
             <div class="divider-custom-line"></div>
@@ -19,9 +19,9 @@
             <div class="divider-custom-line"></div>
         </div>
         <!-- Masthead Subheading-->
-        <h2 class="masthead-subheading font-weight-light mb-0">{{ user.username }}さん ようこそ！<br>あなたの梅尾ポイントは{{ user.umeop }}Pです！</h2>
+        <h2 class="masthead-subheading font-weight-light mb-0">{{ user.username }}さん ようこそ！<br>梅尾P {{ user.umeop }}P</h2>
         <br>
-        <h2>梅尾の誕生日まで，あと{{remain}}日</h2>
+        <h2 class="masthead-ume-nokori">残り{{remain}}日</h2>
     </div>
 </header>
 <!-- Portfolio Section-->
