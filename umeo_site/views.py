@@ -39,15 +39,13 @@ class HomeView(TemplateView):
         if user.is_anonymous:
             return render(request, "umeo_site/index.html")
         #まず日付を持ってくる．このとき，9時間進めないと，dayの情報がちゃんと取れないので注意（日本時間が9時間ずれていることに由来）
-        tmp_last_login = user.last_login + timedelta(hours=9)
+        last_login = today
         tmp_date_mylogin = user.date_mylogin + timedelta(hours=9)
-
-        last_login = datetime(tmp_last_login.year, tmp_last_login.month, tmp_last_login.day)
         date_mylogin = datetime(tmp_date_mylogin.year, tmp_date_mylogin.month, tmp_date_mylogin.day)
 
         deltadays = (last_login - date_mylogin)
 
-        user.date_mylogin = user.last_login
+        user.date_mylogin = today
         #flagはログインボーナス表示をするどうか
         if deltadays.days == 1:
             #1日ぶりにログインしたら，継続日数をプラス１して，保存して，投げる．
