@@ -172,7 +172,7 @@ def StockView(request):
                 user.stock -= number
                 user.save()
     return render(request, 'umeo_site/stock.html', {'now': Stock.objects.all().order_by('-created_at')[0],
-                                                    'stock': Stock.objects.all().order_by('-created_at')[0:100],
+                                                    'stock': Stock.objects.all().order_by('-created_at')[0:20],
                                                     'form':f})
 
 #class StockView(TemplateView):
