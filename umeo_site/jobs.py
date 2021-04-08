@@ -12,7 +12,10 @@ scheduler = BackgroundScheduler()
 def task():
     stock = Stock()
     stock_before = Stock.objects.all().order_by('-created_at')[0]
-    stock.value = stock_before.value + random.randint(-2000, 2000)
+    rand = random.randint(-2000, 2000)
+    if random.randint(1, 100) <= 10:
+        rand *= 10
+    stock.value = stock_before.value + rand
     if stock.value < 1000:
         stock.value = 1000 + random.randint(-500, 500)
     if stock.value > 100000:
