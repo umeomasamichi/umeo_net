@@ -27,13 +27,15 @@ class IndexView(TemplateView):
     template_name = "umeo_site/index.html"
 
 
-today = datetime.today()
-birth_day = datetime(2021, 10, 1)
-dt = birth_day - today
+
 
 class HomeView(TemplateView):
-    template_name = "umeo_site/home.html"
     def get(self, request, *args, **kwargs):
+        template_name = "umeo_site/home.html"
+        today = datetime.today()
+        birth_day = datetime(2021, 10, 1)
+        dt = birth_day - today
+        
         user = self.request.user
         #https://blog.qs-grct.com/2018/10/30/010054/post-1307/
         if user.is_anonymous:
@@ -172,7 +174,7 @@ def StockView(request):
                 user.stock -= number
                 user.save()
     return render(request, 'umeo_site/stock.html', {'now': Stock.objects.all().order_by('-created_at')[0],
-                                                    'stock': Stock.objects.all().order_by('-created_at')[0:20],
+                                                    'stock': Stock.objects.all().order_by('-created_at')[0:21],
                                                     'form':f})
 
 #class StockView(TemplateView):

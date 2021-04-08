@@ -5,7 +5,7 @@
 {% block title %}梅尾株{% endblock %}
 
 {% block content%}
-
+{% load utils %}
 <header class="masthead text-secondary text-center">
     <div class="container d-flex align-items-center flex-column">
         <!-- Masthead Heading-->
@@ -40,7 +40,7 @@
         var ctx = document.getElementById('ex_chart');
 
         var data = {
-            labels: [{%for s in stock reversed%}"{{s.created_at.minute}}", {%endfor%}],
+            labels: [{%for s in stock reversed%}"{{21|sub:forloop.counter}}日前", {%endfor%}],
             datasets: [{
                 label: '最近の株価変動',
                 data: [{%for s in stock reversed%}'{{s.value}}', {%endfor%}],
