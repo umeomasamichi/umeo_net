@@ -10362,9 +10362,21 @@ table td img{
   width: 300px;
   font-size: 300px;
 }
-@media (min-width: 992px) {
+@media (min-width: 720px) {
   .good-card-img{
     height: 400px;
     width: 400px;
     font-size: 400px;
   }
+}
+
+.good-card-body{
+  height: 300px;
+  width: 300px;
+}
+@media (min-width: 720px) {
+  .good-card-body{
+    height: 400px;
+    width: 400px;
+  }
+}
