@@ -10358,9 +10358,11 @@ table td img{
 
 /*for good*/
 .good-card-img{
-  font-size: 300px;
+  height: 300px;
+  width: 300px;
 }
 @media (min-width: 992px) {
   .good-card-img{
-    font-size: 400px;
+    height: 400px;
+    width: 400px;
   }
