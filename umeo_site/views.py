@@ -1,3 +1,4 @@
+from typing import ClassVar
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView,CreateView,DetailView,ListView, FormView
@@ -325,3 +326,6 @@ class GoodCreateView(CreateView):
         self.request.user.umeop += 1000
         self.request.user.save()
         return super(GoodCreateView, self).form_valid(form)
+
+class ProfileView(TemplateView):
+    template_name =  "umeo_site/profile.html"
