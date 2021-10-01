@@ -10372,11 +10372,11 @@ table td img{
 
 .good-card-body{
   height: 300px;
-  width: 300px;
+  width: 290px;
 }
 @media (min-width: 720px) {
   .good-card-body{
     height: 400px;
-    width: 400px;
+    width: 380px;
   }
 }

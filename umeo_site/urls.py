@@ -30,4 +30,5 @@ urlpatterns = [
     path('typing/ajax/', views.TypingAjax, name="typing_ajax"),
     path('good100/', views.GoodListView.as_view(), name="good"),
     path('good100_form/', views.GoodCreateView.as_view(), name="good_form"),
+    path('profile/', views.ProfileView.as_view(), name="profile"),
 ]

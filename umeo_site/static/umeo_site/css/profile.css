@@ -1,0 +1,48 @@
+.serif{
+    color: #eee;
+    font-family: serif;
+}
+
+.profile-top{
+    /*background-color: #212121;*/
+    height: 70vw;
+    background-image: url('/static/umeo_site/img/background.jpg'); 
+    background-size:cover;
+    
+}
+
+
+
+.profile-middle{
+    background-color: #292929;
+    height: 200vw;
+    padding: 0 25vw;
+}
+
+.top-umeo{
+    color: rgb(255, 255, 255);
+    font-size: 8vw;
+    padding-top: 10vw;
+    margin-left: 46vw;
+    font-family: serif;
+    writing-mode: vertical-rl;
+    white-space: nowrap;
+}
+
+.top-umeo rt{
+    font-size: 40%;
+}
+
+.umeo-head{
+    padding-top: 10vw;
+    padding-bottom: 50px;
+}
+
+.umeo-middle-raireki{
+    font-size: 1.3vw;
+}
+
+.graph-text{
+    margin-top: 10px;
+    color: #eee !important;
+}
