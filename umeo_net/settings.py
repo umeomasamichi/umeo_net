@@ -20,12 +20,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'frw9r)thr&+@wd7q^p+docs*(q)ya&^_0l#e=q%a&ygz#m@h8&'
+
+try:
+        from .local_settings import *
+except ImportError:
+        pass
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['umeo-net.com', '54.199.27.214']
+ALLOWED_HOSTS = ['umeo-net.com', '35.73.87.24']
 
 
 # Application definition
