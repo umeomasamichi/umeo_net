@@ -1,0 +1,57 @@
+{% extends 'umeo_site2022/base.html' %}
+
+{% load static %}
+
+{% block title %}ランキング{% endblock %}
+
+{% block content%}
+
+<div class="message text-secondary">
+    <div class="d-flex flex-column ml-5 mr-5">
+        <!-- Masthead Heading
+        <h1 class="message-heading text-uppercase mb-5 text-center">ランキング</h1>
+        <!--message
+        {% for users in object_list %}
+        <div class="card mb-3">
+            <div class="card-header">
+                {{users.username}}
+            </div>
+            <div class="card-body">
+                <!--<h5 class="card-title">{{comment.title}}</h5>
+                <!--改行させて表示させる方法
+                https://www.tssol.net/blog/2019/10/20/django-input-textarea-line-breaks-on-html/
+            
+                <p class="card-text">{{users.umeop | linebreaksbr}}ポイント</p>
+            </div>
+        </div>
+        {% endfor %}
+        -->
+
+        <div class="table-responsive">
+            <table class="table h5 text-secondary text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Ranking</th>
+                        <th scope="col">UserName</th>
+                        <th scope="col">Level</th>
+                        <th scope="col">UmeoP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for users in object_list %}
+                    <!--ログインユーザの行をactiveに-->
+                    <tr class="align-middle {% if users.username == user.username %}table-active{% endif %}">
+                        <th scope="row" class="h2">{{forloop.counter}}</th>
+                        <td class="text-left"><img src="{% static 'umeo_site2022/img/umeoavata.png' %}"> {{users.username}}</td>
+                        <td>{{users.bairitsu}}</td>
+                        <td>{{users.umeop}}points</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

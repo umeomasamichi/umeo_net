@@ -18,8 +18,10 @@ from django.urls import path, include
 from umeo_site import jobs
 
 urlpatterns = [
-    path('polls/', include('polls.urls')),
+    #path('polls/', include('polls.urls')),
     path('umeo_site/', include('umeo_site.urls')),
-    path('cola/', include('cola.urls')),
+    #path('cola/', include('cola.urls')),
     path('admin/', admin.site.urls),
+    path('umeo_site22/', include('umeo_site22.urls')),
+    path('umeo_site2022/', include('umeo_site2022.urls'))
 ]

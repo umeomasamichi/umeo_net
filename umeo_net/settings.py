@@ -26,7 +26,7 @@ from .local_settings import SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['umeo-net.com', '35.73.87.24']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['umeo-net.com', '35.73.87.24']
 INSTALLED_APPS = [
     'django_apscheduler',
     'umeo_site',
+    'umeo_site2022',
     'users.apps.UsersConfig',
     #'umeo_site.apps.UmeoSiteConfig',
     'cola.apps.ColaConfig',
@@ -84,15 +85,8 @@ WSGI_APPLICATION = 'umeo_net.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.sqlite3',
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'NAME': 'umeo_database',
-        'USER': 'kuwayama',
-        'PASSWORD': 'kta12345',
-        'HOST': 'localhost',
-        'PORT': '',
-        # 変えるところ2: DBエンジンをPostgreSQLにして、NAMEとUSERとPASSWORDをそれぞれ編集追記してください。
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -100,6 +94,8 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
+
+#パスワードを失くすためには，以下の中身を消して，パスワード入力を必須じゃなくして（formかな？），htmlにパスワード入力欄を表示させなくする必要がある．
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -136,9 +132,9 @@ USE_TZ = True
 STATIC_ROOT = '/usr/share/nginx/html/static'
 STATIC_URL = '/static/'
 
-LOGIN_URL = 'umeo_site:login'
-LOGIN_REDIRECT_URL = 'umeo_site:home'
-LOGOUT_REDIRECT_URL = 'umeo_site:index'
+LOGIN_URL = 'umeo_site2022:login'
+LOGIN_REDIRECT_URL = 'umeo_site2022:home'
+LOGOUT_REDIRECT_URL = 'umeo_site2022:index'
 
 AUTH_USER_MODEL = 'users.User'
 

@@ -1,0 +1,65 @@
+
+
+{% load static %}
+
+<head>
+    <script src="{% static 'umeo_site2022/js/skrollr.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'umeo_site2022/css/common.css'%}">
+    <link href="{% static 'umeo_site2022/css/styles.css'%}" rel="stylesheet" />
+</head>
+
+
+<body style="background-color: black;">
+
+
+
+<div id="stage">
+    <div class="section">
+        <h1 data-0="color: rgb(0, 0, 0);"
+            data-1000="color: rgb(150, 150, 150);"
+            data-2000="color: rgb(0, 0, 0)">何しに来た</h1>
+        <h1 data-0="display: none"
+            data-2000="display: block; color: rgb(0, 0, 0);"
+            data-3000="color: rgb(150,150,150);"
+            data-4000="color: rgb(0, 0, 0);">ここはガキの来るところじゃないよ．<br>帰った帰った</h1>
+            
+        <h1 data-0="display: none"
+            data-4000="display: block; color: rgb(0, 0, 0);"
+            data-5000="color: rgb(150,150,150);"
+            data-6000="color: rgb(0, 0, 0);">しつこいなあ......<br>梅尾ポイントは持ってるのか</h1>
+        <h1 data-0="display: none"
+            data-6000="display: block; color: rgb(0, 0, 0);"
+            data-7000="color: rgb(150,150,150);"
+            data-8000="color: rgb(0, 0, 0);">分かったよ，それじゃあ入りな</h1>
+        <h1 data-0="display: none"
+            data-end="display: block; color: rgb(150, 150, 150)"
+            >ようこそ</h1>
+        <!--梅尾の画像 + ようこそ(テキストボックス)-->
+    </div>
+</div>
+
+<div style="height:5000px;">
+    <div style="position: static; width: 100%; height: 100%;">
+        <h1 data-0="left: -20%"
+            data-1000="left: 150%"
+            style="position: absolute; top: 50%;transform: translate(-50%, -50%);">ccc</h1>
+        <h1>ddd</h1>
+        <img    data-0="left: 150%"
+                data-100="left: 50%"
+                src="{% static 'umeo_site2022/img/umeo/umeo_bike.png'%}" alt="" 
+                style="width: 70%; height: auto; position: relative;">
+    </div>
+</div>
+
+
+
+
+<h1>bbb</h1>
+
+<script>
+    var s = skrollr.init();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>

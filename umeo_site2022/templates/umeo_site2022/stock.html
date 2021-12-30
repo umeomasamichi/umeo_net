@@ -1,0 +1,98 @@
+{% extends 'umeo_site2022/base.html' %}
+
+{% load static %}
+
+{% block title %}梅尾株{% endblock %}
+
+{% block content%}
+{% load utils %}
+<header class="masthead text-secondary text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading text-uppercase mb-0">梅尾株</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div><!--ここ梅のマークにする-->
+            <div class="divider-custom-line"></div>
+        </div>
+        <!--ボタン-->
+        <p>{{ user.username }}さんの梅尾ポイントは{{ user.umeop }}Pointです</p>
+        <p>現在の株価は{{ now.value }}Pointです</p>
+        <p>持ち株数は，{{ user.stock }}個です</p>
+        <!--<p>[{%for s in stock reversed%}'{{s.value}}', {%endfor%}],</p>-->
+        <!--<p>[{%for s in stock reversed%}"{{s.created_at.minute}}", {%endfor%}],</p>-->
+
+
+        <!-- for ajax-->
+        
+        <!-- /for ajax-->
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+        
+        <style>
+        #ex_chart {max-width:640px;max-height:480px;}
+        </style>
+
+        <canvas id="ex_chart"></canvas>
+
+        <script>
+        var ctx = document.getElementById('ex_chart');
+
+        var data = {
+            labels: [{%for s in stock reversed%}"{{21|sub:forloop.counter}}日前", {%endfor%}],
+            datasets: [{
+                label: '最近の株価変動',
+                data: [{%for s in stock reversed%}'{{s.value}}', {%endfor%}],
+                lineTension: 0,
+                borderColor: 'rgba(255, 100, 100, 1)',
+                fill: false,
+                borderWidth: 3
+            }]
+        };
+
+        var options = {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        //min: 300
+                        beginAtZero: true
+                    }
+                }]
+            }
+        };
+
+        var ex_chart = new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: options
+        });
+        </script>
+        
+        <div class="container">
+            <div class="row" style="display: flex;">
+                <div class="col-sm  text-center" style="width:150px">
+                    <form action="{%url 'umeo_site2022:stock' %}?id=100" method="post" class="form-inline justify-content-center">
+                        {% csrf_token%}
+                        {{form}}
+                        <button type="submit" style="width:180px;height:50px" class="mx-3 my-3 btn btn-secondary btn-lg font-weight-bold"><i class="fas fa-money-bill mr-2"></i>BUY</button>
+                    </form>
+                </div>
+                <div class="col-sm" style="width:150px">
+                    <form action="{%url 'umeo_site2022:stock' %}?id=200" method="post" class="form-inline justify-content-center">
+                        {% csrf_token%}
+                        {{form}}
+                        <button type="submit" style="width:180px;height:50px" class="mx-3 my-3 btn btn-secondary btn-lg font-weight-bold"><i class="fas fa-coins mr-2"></i>SELL</button>
+                    </form>
+                </div>
+            </div>
+          </div>
+        
+
+    </div>
+
+    
+    
+</header>
+
+{% endblock %}

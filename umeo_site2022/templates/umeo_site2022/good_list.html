@@ -1,0 +1,73 @@
+{% extends 'umeo_site2022/base.html' %}
+
+{% load static %}
+
+
+
+{% block title %}100のいいところ{% endblock %}
+
+{% block content%}
+
+<div class="message text-secondary">
+    <div>
+        <!-- Masthead Heading-->
+        <h1 class="message-heading text-uppercase mb-5 text-center">梅尾の良いところ100個</h1>
+
+        <!--heart
+        <div class="d-flex justify-content-center">
+        <div class="card bg-danger text-center" style="width: 565px">
+            <div>
+                <i class="fas fa-heart fa-inverse card-img" style="font-size: 400px;"></i>
+                <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                    <h3 class="card-text pb-5">ああああああああああ<br>いいいいいいいいいいい<br>ううううううううう<br>ええええええええ</h3>
+                    <!--全角で13x6くらいの文章なら良い感じ--
+                </div>
+            </div>
+        </div>
+        </div>
+        -->
+
+        <!--message
+        <div class="card-columns mx-auto p-5">
+            {% for message in object_list %}
+            <div class="card p-3">
+                <i class="fas fa-heart position-absolute" style="font-size: 300px"></i>
+                <blockquote class="blockquote mb-0 card-body">
+                  <p>{{message.body | linebreaksbr}}</p>
+                </blockquote>
+            </div>
+            {% endfor %}
+        </div>
+    -->
+
+        <!--反映してよーーー！-->
+        {% for message in object_list %}
+        <div class="d-flex justify-content-center p-3">
+            <div class="card bg-danger text-center" style="width: 565px">
+                <div>
+                    <i class="fas fa-heart fa-inverse card-img good-card-img"></i><!--400px-->
+                    <div class="card-img-overlay d-flex align-items-center justify-content-center">
+                        <h1 class="position-absolute pb-5" style="font-size: 200px; color: hotpink; z-index: 0; opacity: 0.2;">{{forloop.counter}}</h1>
+                        <div class="good-card-body d-flex justify-content-center">
+                            <h3 class="card-text pb-4" style="z-index: 100; margin: auto auto;">{{message.body | linebreaksbr}}</h3>
+                        </div>
+                        <!--全角で13x6くらいの文章なら良い感じ-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+    </div>
+
+    <hr>
+    <div class="ml-3">
+        <form action="{% url 'umeo_site2022:good_form' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-secondary btn-lg font-weight-bold">新規コメントの投稿</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

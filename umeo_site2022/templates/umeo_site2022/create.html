@@ -1,0 +1,15 @@
+{% extends 'umeo_site2022/base.html' %}
+{% block content %}
+    <div class="message text-secondary">
+    <div class="d-flex flex-column ml-5 mr-5">
+    <p>新規ユーザーの作成</p>
+    <form action="" method="POST">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-secondary">作成</button>
+    
+    </form>
+    </div>
+    </div>
+{% endblock %}

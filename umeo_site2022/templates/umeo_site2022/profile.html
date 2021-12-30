@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>profile</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{% static 'umeo_site2022/img/favicon.ico' %}" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'umeo_site2022/css/styles.css'%}" rel="stylesheet" />
+
+    <!--CSS for slick https://b-risk.jp/blog/2020/01/slick-customize/-->
+    <link rel="stylesheet" type="text/css" href="{% static 'umeo_site2022/css/slick.css'%}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'umeo_site2022/css/common.css'%}">
+    <link href="{% static 'umeo_site2022/css/profile.css'%}" rel="stylesheet" />
+
+    {% block head %}
+    {% endblock %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="{% static 'umeo_site2022/js/donut.js' %}" defer></script>
+</head>
+
+
+<body>
+<!--
+
+
+    
+-->
+
+    <div class="profile-top" id="page-top">
+        <div>
+            
+            <!--<h1 class="top-umeo"><ruby><rb>梅</rb><rt>うめ</rt><rb>尾</rb><rt>お</rt></ruby> <ruby><rb>雅</rb><rt>まさ</rt><rb>道</rb><rt>みち</rt></ruby></h1>-->
+            <h1 class="top-umeo"><ruby>
+                    <rb>梅</rb>
+                    <rt>うめ</rt>
+                    <rb>尾</rb>
+                    <rt>お</rt>
+                </ruby> <ruby>
+                    <rb>雅</rb>
+                    <rt>まさ</rt>
+                    <rb>道</rb>
+                    <rt>みち</rt>
+                </ruby></h1>
+        </div>
+
+    </div>
+
+    <div class="profile-middle">
+        <div>
+            <h1 class="umeo-head text-center serif">来歴</h1>
+            <div class="serif umeo-middle-raireki">
+                バンダイがたまごっちを発売すると，その人気は本来ターゲットであった女子高生にとどまることなく，日本全国に広がっていった．
+                <br><br>
+                小さな画面の中にいるキャラクターのお世話をし，その育て方によってさまざまなキャラクターに変身していくというシンプルなゲーム性は，人間が元来持つ庇護欲や支配欲を掻き立てた．バブルの崩壊，カルト宗教による事件，終末論などが重なり，ナイーブな進歩論が音を立てて崩れる中で，よい餌を与えればよく育ち，熱心に世話をすればそれに応えるように変身していくたまごっちは時代の寵児であり，人々が心の拠り所をたまごっちに求めたのは，ある種必然であったとも言えよう．
+                <br><br>
+                この膨大な需要に供給が間に合うはずもなく，<br>
+                たまごっちの所有は，日本において一種のステータスとなる．
+                <br><br>
+                見栄・嫉妬・羨望・欲望．
+                <br>
+                日本は異様な熱気に包まれていた．
+                <br><br>
+                熱狂と興奮はやがて大きな渦となり，有象無象を巻き込みながら巨大化していく．
+                <br>
+                たまごっちという無機質な生命への希求が嘗てないほどの高まりを見せたある日．
+                <br>
+                その反動かのように，極めて多情多感な１人の男が福岡に生まれた．
+                <br><br>
+                梅尾 雅道
+                <br><br>
+                その後，学生落語界において雲蒸竜変の活躍を為し，「メガネ」と渾名されることになる彼が生まれたのは，今から25年前，1996年10月1日のことであった．
+            </div>
+            <div class="mt-5 umeo-middle-graph">
+                <h1 class="umeo-head text-center serif">梅尾のデータ</h1>
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <canvas class="m-auto" id="chart-area" width="100" height="100"></canvas>
+                        <p class="text-center graph-text">メガネをかけている割合</p>
+                    </div>
+                    <div>
+                        <canvas class="m-auto" id="chart-area2" width="100" height="100"></canvas>
+                        <p class="text-center graph-text">料理を作る日の割合</p>
+                    </div>
+                    <div>
+                        <canvas class="m-auto" id="chart-area3" width="100" height="100"></canvas>
+                        <p class="text-center graph-text">あああ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    
+
+
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
+    <div class="scroll-to-top d-lg-none position-fixed">
+        <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i
+                class="fa fa-chevron-up"></i></a>
+    </div>
+
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Third party plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+    <!-- Core theme JS-->
+    <script src="{% static 'umeo_site2022/js/scripts.js'%}"></script>
+    <!--JS for slick-->
+    <script src="{% static 'umeo_site2022/js/slick.min.js'%}"></script>
+    <script src="{% static 'umeo_site2022/js/common.js'%}"></script>
+
+    {% block script %}
+    {% endblock %}
+
+</body>
+
+</html>

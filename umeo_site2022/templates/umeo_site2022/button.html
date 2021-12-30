@@ -1,0 +1,87 @@
+{% extends 'umeo_site2022/base.html' %}
+
+{% load static %}
+
+{% block title %}梅尾ボタン{% endblock %}
+
+{% block content%}
+{% load utils %}
+<!--templatetagをload-->
+
+<!-- Masthead-->
+<header class="masthead text-secondary text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading text-uppercase mb-0">梅尾ボタン</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div><!--ここ梅のマークにする-->
+            <div class="divider-custom-line"></div>
+        </div>
+        
+
+        <div class="result">
+        <h3>{{ user.username }}さんの梅尾ポイントは{{ user.umeop }}Pです</h3>
+        <h3>{{ user.username }}さんのレベルは{{ user.bairitsu }}です</h3>
+        <h3 class="mb-5">次のレベルに進むためのポイントは{{ user.bairitsu|next_point:10 }}Pです</h3>
+        </div>
+        
+        
+
+        <div style="display:inline-flex">
+        
+        <a  style="width:225px;height:160px"
+            class="like btn btn-primary btn-lg font-weight-bold mr-5 umeo_button">
+            <i class="fas fa-heart fa-3x mb-2"></i> 
+            <h1>Like</h1></a>
+        
+        <br>
+        <a  style="width:225px;height:160px"
+            class="level btn btn-primary btn-lg font-weight-bold umeo_button">
+            <i class="fas fa-level-up-alt fa-3x mb-2"></i>
+            <h1>Rank Up</h1></a>
+        
+        </div>
+
+    </div>
+</header>
+
+
+<!--https://www.geeksforgeeks.org/handling-ajax-request-in-django/
+    結局これを参考にした
+    formで囲んだのと，event.preventDefault()は自分でつけた
+    これがないと，複数のボタンがview側で区別できなかった-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $('.like').click(function(){
+        event.preventDefault();
+        $.ajax(
+        {
+            type:"GET",
+            url: "{% url 'umeo_site2022:button_ajax' %}?id=100",
+            //dataは，HttpResponseの引数
+            success: function(data)
+            {
+                //resultクラスのやつを消す（empty）．そしてdataを追加
+                $(".result").empty().append(data);
+            }
+        })
+    });
+    $('.level').click(function(){
+        $.ajax(
+            {
+                type:"GET",
+                url: "{% url 'umeo_site2022:button_ajax' %}?id=200",
+                //dataは，HttpResponseの引数
+                success: function(data)
+                {
+                    $(".result").empty().append(data);
+                }
+        })
+    });
+</script>
+
+
+{% endblock %}

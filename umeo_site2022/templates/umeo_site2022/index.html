@@ -1,0 +1,30 @@
+{% extends 'umeo_site2022/base.html' %}
+
+{%load static%}
+
+{% block content%}
+
+{% block title %}Umeo-Net{% endblock %}
+<header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Avatar Image-->
+        <img class="masthead-avatar mb-5" src="{% static 'umeo_site2022/img/avataaars.svg' %}" alt="" />
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading text-uppercase mb-5">梅尾の誕生日<br>おめでとうサイト</h1>
+        
+        <form action="{% url 'umeo_site2022:login' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-secondary btn-lg font-weight-bold">ログイン</button>
+        </form>
+        <br>
+        <form action="{% url 'umeo_site2022:create' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-secondary btn-lg font-weight-bold">アカウント作成</button>
+        </form>
+    
+    </div>
+</header>
+
+
+
+{% endblock %}
